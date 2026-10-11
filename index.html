@@ -688,8 +688,7 @@
   </div>
 
   <script>
-    const DEFAULT_SHEET_ID = '1M3osMyzFN8Zoo1ukaDt7ZUA2QqXhjDyndxw_rHoSOYE';
-
+     const DEFAULT_SHEET_ID = '1-IhxHvLO_PcEVPei-1zF1w6WUDhFNsYAFF-agvidZbc';
     // 嚴格過濾與清除文字中可能出現的 "null" 與 "undefined"
     function sanitizeText(str) {
       if (!str) return '';
@@ -911,139 +910,49 @@
     }
 
     // 掛耳包智慧解析器（徹底杜絕 "null"、排除頁尾所有說明/聯絡雜訊，精準保留商品）
+    // 1. 新版掛耳包解析器 (對應標準直向格式)
     function transformDripRows(rows) {
       const list = [];
-      let currentSeries = 'A系列';
-      let currentPrice = 600;
+      rows.forEach((row, idx) => {
+        if (!row || !row.c) return;
+        const rawCells = row.c.map(c => getCleanCellString(c));
+        const strCells = rawCells.filter(Boolean);
+        if (strCells.length < 2) return; // 略過空白或資料不足的列
 
-      for (let idx = 0; idx < rows.length; idx++) {
-        const row = rows[idx];
-        if (!row || !row.c) continue;
-
-        // 使用 getCleanCellString 清洗每一個儲存格
-        const cells = row.c.map(c => getCleanCellString(c));
-        const strCells = cells.filter(Boolean);
-        if (strCells.length === 0) continue;
-
-        const fullLine = strCells.join(' ');
-
-        // 1. 忽略標題行與說明行
-        if (/品項名稱|速必得自家|表格|系列規格|風味介紹|掛耳包清單/.test(fullLine) && !/\d{3}/.test(fullLine)) continue;
+        // 標準欄位：A:分類, B:品名, C:規格, D:風味, E:售價
+        const category = rawCells[0] || 'A系列';
+        let name = rawCells[1] || '';
+        const packInfo = rawCells[2] || '25包/份';
+        const desc = rawCells[3] || '手沖掛耳包';
+        const priceStr = rawCells[4] || '';
         
-        // 2. 徹底黑名單過濾：頁尾訂購說明、聯絡資訊、備註行（截圖中的雜訊全數直接排除）
-        if (/每一口味|任意搭配|2包九折|4包八折|訂購電話|0961|LINE\s*ID|SPEEDCOFFEE|便利商店|取貨付款|全家|7-11|宅配到府|郵局|請先匯款|匯款|姓名|手機|取貨便利商店|宅配地址|備註|注意|說明|基本運費|滿\s*\d\s*份|任選滿|兩類可合併/i.test(fullLine)) {
-          continue;
-        }
+        if (name === '品項名稱' || name === '品名' || !name) return; // 略過標題列
 
-        // 額外防呆：若行內帶有電話號碼格式（如 09xx）或表單格式，直接跳過
-        if (/09\d{2}[-\s]?\d{3}[-\s]?\d{3}|0961411357/.test(fullLine)) continue;
-        if (/(?:姓名|手機|電話|地址|門市|LINE)\s*[:：]/i.test(fullLine)) continue;
-        if (/^運費\s*\d+/.test(fullLine.trim())) continue;
+        // 處理價格
+        let price = parseNumericPrice(priceStr);
+        if (price === 0) price = 600; // 防呆預設值
 
-        // 3. 識別系列標籤（支援 A系列、B系列、C系列）
-        for (const s of strCells) {
-          const mSeries = s.match(/([A-Za-z0-9\u4e00-\u9fa5]+系列)/);
-          if (mSeries) {
-            currentSeries = mSeries[1].toUpperCase();
-            break;
-          }
-        }
-
-        // 4. 識別價格：嚴格限制辨識標準百元整數（400, 500, 600, 700, 800, 900, 1000...）
-        // 徹底防堵將電話號碼前4碼 0961 誤認為 961 元！
-        let rowPrice = 0;
-        for (const s of strCells) {
-          if (/[:：]|09\d{8}/.test(s)) continue;
-          const m = s.match(/(?:NT\$?|\$)?\s*([4-9]00|[1-9]\d00)(?:\s*元)?/);
-          if (m) {
-            const val = parseInt(m[1], 10);
-            if (val >= 300 && val <= 2000) {
-              rowPrice = val;
-              break;
-            }
-          }
-        }
-        if (rowPrice > 0) {
-          currentPrice = rowPrice;
-        }
-
-        // 5. 若整列僅有系列橫幅與價格（例如 "A系列 每份一種口味25包600元"），不當成商品建立
-        const isBannerRow = strCells.every(s => 
-          /系列$/.test(s) || 
-          /(?:25包|每份|元)/.test(s) || 
-          /^(?:NT\$?|\$)?\s*\d{3,4}(?:\s*元)?$/.test(s)
-        );
-        if (isBannerRow) continue;
-
-        // 6. 挑選非系列、非價格文字候選
-        const textCandidates = strCells.filter(s => {
-          if (/[A-Za-z0-9\u4e00-\u9fa5]+系列$/.test(s)) return false;
-          if (/^(?:NT\$?|\$)?\s*\d{3,4}(?:\s*元)?$/.test(s)) return false;
-          if (/^每份.*(?:包|元)/.test(s)) return false;
-          if (/^25包(?:\/份)?$/.test(s)) return false;
-          if (/^(?:※|★|\*|備註|注意|說明)/.test(s)) return false;
-          if (/^(?:姓名|手機|電話|地址|門市|LINE)/i.test(s)) return false;
-          return true;
-        });
-
-        if (textCandidates.length === 0) continue;
-
-        let name = '';
-        let desc = '手沖掛耳包，25包/份';
-
-        // 優先對應 C欄(品名) 與 D欄(風味)
-        const colC = cells[2] || '';
-        const colD = cells[3] || '';
-
-        if (colC && !/系列|每份|25包/.test(colC)) {
-          name = colC;
-          desc = colD || (textCandidates.find(t => t !== colC) || desc);
-        } else if (textCandidates.length >= 2) {
-          if (textCandidates[0].length <= 18 && textCandidates[1].length > textCandidates[0].length) {
-            name = textCandidates[0];
-            desc = textCandidates.slice(1).join(' ');
-          } else {
-            name = textCandidates[0];
-            desc = textCandidates[1];
-          }
-        } else if (textCandidates.length === 1) {
-          name = textCandidates[0];
-        }
-
-        // 嚴密清洗文字中的 "null"
         name = sanitizeText(name);
-        desc = sanitizeText(desc);
-
-        if (!name || name.length <= 1) continue;
-        if (/系列|品項名稱|表格|滿\d|運費|折扣|任選|每一口味|訂購電話|LINE\s*ID|便利商店|宅配|姓名|手機|地址/.test(name)) continue;
-
-        // 自動加註 (不酸)
+        
+        // 自動加註不酸
         const isNotSour = desc.includes('不酸') || desc.includes('不會酸') || name.includes('不酸');
         if (isNotSour && !name.includes('(不酸)')) {
           name = `${name} (不酸)`;
         }
 
-        let finalPrice = rowPrice || currentPrice;
-        if (!finalPrice || finalPrice < 300 || finalPrice === 961) {
-          if (currentSeries.includes('C')) finalPrice = 800;
-          else if (currentSeries.includes('B')) finalPrice = 700;
-          else finalPrice = 600;
-        }
-
         list.push({
           id: `drip-sheet-${idx}`,
-          series: currentSeries,
+          series: sanitizeText(category),
           name: name,
-          price: finalPrice,
-          desc: desc || '手沖掛耳包，25包/份',
-          packInfo: '25包/份'
+          price: price,
+          desc: sanitizeText(desc),
+          packInfo: sanitizeText(packInfo)
         });
-      }
-
+      });
       return list;
     }
 
-    // 咖啡豆解析器 (對應：第一行品名、第二行處理法、第三行風味)
+    // 2. 新版咖啡豆解析器 (對應標準直向格式)
     function transformBeanRows(rows) {
       const list = [];
       rows.forEach((row, idx) => {
@@ -1051,95 +960,41 @@
         const rawCells = row.c.map(c => getCleanCellString(c));
         if (rawCells.length < 2) return;
 
-        const line = rawCells.join(' ');
-        if (/咖啡豆標籤|產區或莊園|處理法或等級|風味敘述|表格/.test(line)) return;
+        // 標準欄位：A:分類, B:品名, C:處理法, D:風味, E:售價, F:備註
+        const category = rawCells[0] || '';
+        const name = rawCells[1] || '';
+        const process = rawCells[2] || '莊園特選';
+        const notes = rawCells[3] || '純淨甜感，回甘深遠';
+        const priceStr = rawCells[4] || '';
+        const remark = rawCells[5] || '';
 
-        let detectedPrice = 0;
-        let isOnePound = false;
-        if (line.includes('一磅')) isOnePound = true;
+        if (name === '品項名稱' || name === '第一行(國家或莊園)' || !name) return; // 略過標題列
 
-        for (let i = 0; i < rawCells.length; i++) {
-          const num = parseNumericPrice(rawCells[i]);
-          if (num >= 200 && num <= 2000) {
-            detectedPrice = num;
-            break;
-          }
-        }
-        if (detectedPrice <= 0) return;
+        let price = parseNumericPrice(priceStr);
+        if (price <= 0) return; // 沒價格就不顯示
 
         let tasteGroup = 'sour';
         let sourType = '微酸';
-        let name = '';
-        let process = '莊園特選';
-        let notes = '純淨甜感，回甘深遠';
-
-        let categoryIdx = -1;
-        for (let i = 0; i < rawCells.length; i++) {
-          const str = rawCells[i];
-          if (str === '不酸' || str === '微酸' || str === '較酸') {
-            categoryIdx = i;
-            if (str === '不酸') {
-              tasteGroup = 'not-sour';
-              sourType = '';
-            } else {
-              tasteGroup = 'sour';
-              sourType = str;
-            }
-            break;
-          }
+        
+        if (category.includes('不酸')) {
+          tasteGroup = 'not-sour';
+          sourType = '';
+        } else if (category.includes('較酸')) {
+          tasteGroup = 'sour';
+          sourType = '較酸';
         }
 
-        if (categoryIdx !== -1) {
-          const col1 = rawCells[categoryIdx + 1] || '';
-          const col2 = rawCells[categoryIdx + 2] || '';
-          const col3 = rawCells[categoryIdx + 3] || '';
-
-          if (col1 && !col1.includes('酸')) name = col1;
-          if (col2) process = col2;
-          if (col3) notes = col3;
-        } else {
-          const validTexts = rawCells.filter(c => c && parseNumericPrice(c) === 0 && !c.includes('一磅'));
-          if (validTexts.length > 0) {
-            if (validTexts[0].includes('不酸')) {
-              tasteGroup = 'not-sour';
-              sourType = '';
-              validTexts.shift();
-            } else if (validTexts[0].includes('酸')) {
-              tasteGroup = 'sour';
-              sourType = validTexts[0].includes('較酸') ? '較酸' : '微酸';
-              validTexts.shift();
-            }
-          }
-
-          if (validTexts.length >= 3) {
-            name = validTexts[0];
-            process = validTexts[1];
-            notes = validTexts.slice(2).join(' ');
-          } else if (validTexts.length === 2) {
-            name = validTexts[0];
-            process = '莊園特選';
-            notes = validTexts[1];
-          } else if (validTexts.length === 1) {
-            name = validTexts[0];
-          }
-        }
-
-        name = sanitizeText(name);
-        process = sanitizeText(process) || '莊園特選';
-        notes = sanitizeText(notes) || '純淨甜感，回甘深遠';
-
-        if (!name || name === '不酸' || name === '微酸' || name === '較酸') return;
-
-        const isNewArrival = name.includes('拉斯拉哈斯') || (name.includes('烏干達') && (process.includes('日曬') || line.includes('百香果')));
+        const isOnePound = remark.includes('一磅');
+        const isNewArrival = name.includes('拉斯拉哈斯') || (name.includes('烏干達') && process.includes('日曬'));
 
         list.push({
           id: `bean-sheet-${idx}`,
           tasteGroup,
           sourType,
-          name,
-          process,
-          notes,
-          price: detectedPrice,
+          name: sanitizeText(name),
+          process: sanitizeText(process),
+          notes: sanitizeText(notes),
+          price: price,
           isOnePound,
           isNew: isNewArrival
         });
@@ -1147,7 +1002,7 @@
       return list;
     }
 
-    // 專人服務專區 (冰滴與特惠活動) 解析器
+    // 3. 新版專人服務專區 (冰滴與特惠活動) 解析器 (對應標準直向格式)
     function transformInquiryRows(rows, defaultType = 'promo') {
       const list = [];
       const isIce = (defaultType === 'icedrip');
@@ -1156,124 +1011,54 @@
         if (!row || !row.c) return;
         const rawCells = row.c.map(c => getCleanCellString(c));
         const strCells = rawCells.filter(Boolean);
-        if (strCells.length === 0) return;
+        if (strCells.length < 2) return;
 
-        const fullLine = strCells.join(' ');
-        if (/品項名稱|活動標籤|方案名稱|容量規格|風味敘述|專案特惠|售價|表格/.test(fullLine) && !/\d+/.test(fullLine)) return;
+        // 標準欄位：A:分類, B:品名, C:規格, D:風味, E:售價, F:備註
+        const category = rawCells[0] || '';
+        const name = rawCells[1] || '';
+        const spec = rawCells[2] || '';
+        const desc = rawCells[3] || '';
+        const priceStr = rawCells[4] || '';
+        const remark = rawCells[5] || '';
 
-        let detectedPrice = 0;
-        let detectedImageUrl = '';
+        if (name === '品項名稱' || name === '品名' || !name) return; // 略過標題列
 
-        for (const c of rawCells) {
-          if (/^https?:\/\//i.test(c) || /googleusercontent|drive\.google/i.test(c)) {
-            detectedImageUrl = parseDirectImageUrl(c);
-          }
-          const num = parseNumericPrice(c);
-          if (num >= 50 && num <= 8000 && detectedPrice === 0) {
-            detectedPrice = num;
-          }
-        }
-
-        let name = '';
-        let tag = isIce ? '直火冰滴' : '新品上架';
-        let spec = isIce ? '速必得特選冰滴 ~ 狂野非洲精品綜合' : '莊園特選';
-        let desc = '日本皇家富士直火烘焙工藝出品，風味純淨回甘。';
-        let isRedirectBean = false;
-        let isSuperPromo = false;
-
-        if (fullLine.includes('三磅') || fullLine.includes('1500') || (fullLine.includes('濃情摩卡') && fullLine.includes('薇薇特南果'))) {
-          tag = '超值特惠';
-          name = '濃情摩卡、薇薇特南果、祕魯（三磅超值組）';
-          spec = '經典不酸三本柱：濃情摩卡 + 薇薇特南果 + 祕魯 各 1 磅（共 3 磅）';
-          desc = '精選三款超人氣不酸經典！焦糖堅果、核果可可香醇甘甜。三磅專案一口價 NT$ 1,500 即享免運費出貨，接單新鮮現烘，請另外洽詢訂購！';
-          detectedPrice = 1500;
-          isSuperPromo = true;
-          isRedirectBean = false;
-        } else if (fullLine.includes('烏干達') || (detectedPrice === 600 && !isIce)) {
-          tag = '新品上架';
-          name = '烏干達 Sipi Falls 處理廠';
-          spec = '日曬處理法（半磅裝）';
-          desc = '百香果、黑醋栗、熱帶水果豐富果香，尾韻甜感綿密。';
-          detectedPrice = 600;
-          isRedirectBean = true;
-        } else if (fullLine.includes('拉斯拉哈斯') || fullLine.includes('黑靈魂') || (detectedPrice === 650 && !isIce)) {
-          tag = '新品上架';
-          name = '哥斯大黎加 拉斯拉哈斯莊園';
-          spec = '黑靈魂 日曬（半磅裝）';
-          desc = '黑棗、酒釀、烏梅、奶油般滑順濃郁口感。';
-          detectedPrice = 650;
-          isRedirectBean = true;
+        let price = parseNumericPrice(priceStr);
+        
+        if (isIce) {
+          if (price === 0) price = 200;
+          list.push({
+            id: `icedrip-${idx}`,
+            name: sanitizeText(name),
+            tag: sanitizeText(category) || '直火冰滴',
+            spec: sanitizeText(spec) || '速必得特選隨行瓶',
+            desc: sanitizeText(desc + (remark ? ' ' + remark : '')),
+            price: price,
+            notice: '每瓶 200 元・滿 7 瓶即享免運費 (常溫配送，取貨後請冷藏保存)'
+          });
         } else {
-          const meaningfulTexts = strCells.filter(t => !/^https?:\/\//i.test(t) && parseNumericPrice(t) === 0);
-          if (meaningfulTexts.length >= 4) {
-            if (/特惠|新品|活動|推薦|限定|招牌|直火/.test(meaningfulTexts[0])) {
-              tag = meaningfulTexts[0];
-              name = meaningfulTexts[1];
-              spec = meaningfulTexts[2];
-              desc = meaningfulTexts[3];
-            } else {
-              name = meaningfulTexts[0];
-              spec = meaningfulTexts[1];
-              desc = meaningfulTexts.slice(2).join(' ');
-            }
-          } else if (meaningfulTexts.length >= 2) {
-            name = meaningfulTexts[0];
-            desc = meaningfulTexts.slice(1).join(' ');
-          } else if (meaningfulTexts.length === 1) {
-            name = meaningfulTexts[0];
-          }
+          // 特惠活動
+          let tag = sanitizeText(category) || '新品上架';
+          let isSuperPromo = category.includes('超值') || name.includes('三磅') || price === 1500;
+          let isRedirectBean = !isSuperPromo; // 如果不是超值特惠，預設導向咖啡豆區
+
+          list.push({
+            id: `promo-${idx}`,
+            name: sanitizeText(name),
+            tag: tag,
+            spec: sanitizeText(spec) || '莊園特選',
+            desc: sanitizeText(desc),
+            price: price || 600,
+            notice: isSuperPromo 
+              ? '一口價免運費・由專人為您安排現烘出貨' 
+              : '新品上架現貨供應・請移步「咖啡豆」選單選購',
+            isRedirectBean: isRedirectBean,
+            isSuperPromo: isSuperPromo
+          });
         }
-
-        name = sanitizeText(name);
-        spec = sanitizeText(spec) || (isIce ? '速必得特選隨行瓶' : '限量精品');
-        desc = sanitizeText(desc) || '日本皇家富士直火烘焙工藝出品，風味純淨回甘。';
-
-        if (!name || name.length <= 1 || name === '新品上架' || name === '特惠活動') return;
-        if (isIce) detectedPrice = 200;
-
-        list.push({
-          id: `${defaultType}-sheet-${idx}`,
-          name: name,
-          tag: tag,
-          spec: spec,
-          desc: desc,
-          price: detectedPrice || (isIce ? 200 : 650),
-          imageUrl: detectedImageUrl,
-          notice: isSuperPromo 
-            ? '三磅一口價 NT$ 1,500 免運費・由專人為您安排現烘出貨' 
-            : (isIce 
-                ? '每瓶 200 元・滿 7 瓶即享免運費 (常溫配送，取貨後請冷藏保存)' 
-                : (isRedirectBean 
-                    ? '新品上架現貨供應・請移步「咖啡豆」選單選購' 
-                    : '專案特惠・由專人為您服務預留')),
-          isRedirectBean,
-          isSuperPromo
-        });
       });
-
-      if (!isIce) {
-        const hasTrio = list.some(p => p.isSuperPromo || p.price === 1500);
-        const hasUganda = list.some(p => p.name.includes('烏干達') || p.price === 600);
-        const hasLasLajas = list.some(p => p.name.includes('拉斯拉哈斯') || p.name.includes('黑靈魂') || p.price === 650);
-
-        if (!hasTrio) list.push(DEFAULT_PROMO_PRODUCTS[0]);
-        if (!hasUganda) list.push(DEFAULT_PROMO_PRODUCTS[1]);
-        if (!hasLasLajas) list.push(DEFAULT_PROMO_PRODUCTS[2]);
-
-        list.sort((a, b) => {
-          const getRank = (item) => {
-            if (item.isSuperPromo || item.name.includes('三磅') || item.price === 1500) return 1;
-            if (item.name.includes('烏干達') || item.price === 600) return 2;
-            if (item.name.includes('拉斯拉哈斯') || item.name.includes('黑靈魂') || item.name.includes('哥斯大黎加') || item.price === 650) return 3;
-            return 4;
-          };
-          return getRank(a) - getRank(b);
-        });
-      }
-
       return list;
     }
-
     async function loadDataFromCloudSheet(isManual = false) {
       const statusBar = document.getElementById('sync-status-text');
       const dot = document.getElementById('sync-dot');
