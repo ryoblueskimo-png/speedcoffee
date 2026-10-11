@@ -214,6 +214,16 @@
           </ul>
         </div>
       </div>
+      <!-- 新增全館滿額折扣說明 -->
+      <div class="mt-2 bg-[#FFF1F2] border border-[#FECDD3] p-2 rounded-xl text-xs sm:text-sm">
+        <p class="font-bold text-[#BE123C] mb-1">🎉 檔期活動：即日起 ～ 11/15 止</p>
+        <ul class="space-y-0.5 text-[#881337] text-xs">
+           <li>• 全品項結帳滿 <strong class="font-bold">1,000 元，現折 100 元</strong></li>
+           <li>• 全品項結帳滿 <strong class="font-bold">2,000 元，現折 300 元</strong></li>
+           <li class="text-[10px] text-[#9F1239] mt-1">（全品項皆可折抵，補豆趁現在最划算！）</li>
+        </ul>
+      </div>
+
       <div class="mt-2 text-[11px] text-[#8A5B3D] flex justify-between">
         <span>* 基本運費 $80（咖啡豆滿 1 磅自動免運）</span>
         <span class="text-[#B74127] font-semibold">兩類可合併結帳・特惠企劃與冰滴享專人訂購</span>
@@ -565,7 +575,7 @@
           <div class="flex items-center justify-between">
             <span class="font-bold text-[#8C2D19] text-xs">📋 訂購訊息內容（已預先拷貝）：</span>
             <button type="button" onclick="copyOrderTextAction()" class="bg-[#2B170E] text-[#F3EADB] px-2.5 py-1 rounded-md text-[11px] font-bold active:scale-95">
-              手動複製
+              手掌握複製
             </button>
           </div>
           <textarea id="order-text-preview" rows="4" readonly class="w-full p-2 bg-white rounded-lg border border-[#D9C4AB] text-[11px] text-[#4A2D1B] font-mono select-all focus:outline-none"></textarea>
@@ -1346,7 +1356,7 @@
                   type="button" 
                   onclick="openInquiryModal('promo', '${item.id}')"
                   class="w-full sm:w-auto bg-[#06C755] hover:bg-[#05b34c] active:scale-95 text-white font-bold text-xs sm:text-sm px-4 py-2.5 rounded-xl shadow transition flex items-center justify-center space-x-1.5 cursor-pointer">
-                  <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M19.365 9.863c.349.001.62.285.62.631 0 .346-.271.63-.62.63h-1.928v1.272h1.928c.349 0 .62.284.62.63 0 .348-.271.632-.62.632h-2.558a.63.63 0 0 1-.63-.632V7.728a.63.63 0 0 1 .63-.63h2.558c.349 0 .62.284.62.63 0 .347-.271.631-.62.631h-1.928v1.504h1.928zM12 2C6.477 2 2 6.075 2 11.103c0 3.195 1.777 6.009 4.492 7.55-.176.602-.705 2.378-.813 2.766-.134.482.176.474.37.346.153-.102 2.457-1.638 3.447-2.302.822.126 1.664.192 2.504.192 5.523 0 10-4.075 10-9.103C22 6.075 17.523 2 12 2zm3.326 10.395a.63.63 0 0 1-.63.632.632.632 0 0 1-.63-.632V7.728a.63.63 0 0 1 .63-.63h2.558c.349 0 .62.284.62.63 0 .347-.271.631-.62.631h-1.928v1.504h1.928z"/></svg>
+                  <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M19.365 9.863c.349.001.62.285.62.631 0 .346-.271.63-.62.63h-1.928v1.272h1.928c.349 0 .62.284.62.63 0 .348-.271.632-.62.632h-2.558a.63.63 0 0 1-.63-.632V7.728a.63.63 0 0 1 .63-.63h2.558c.349 0 .62.284.62.63 0 .347-.271.631-.62.631h-1.928v1.504h1.928zM12 2C6.477 2 2 6.075 2 11.103c0 3.195 1.777 6.009 4.492 7.55-.176.602-.705 2.378-.813 2.766-.134.482.176.474.37.346.153-.102 2.457-1.638 3.447-2.302.822.126 1.664.192 2.504.192 5.523 0 10-4.075 10-9.103C22 6.075 17.523 2 12 2zm3.326 10.395a.63.63 0 0 1-.63.632.632.632 0 0 1-.63-.632V7.728a.63.63 0 0 1 .63-.63h2.558c.349 0 .62.284.62.63 0 .347-.271.631-.62.631h-1.928v1.504h1.928zM12 2C6.477 2 2 6.075 2 11.103c0 3.195 1.777 6.009 4.492 7.55-.176.602-.705 2.378-.813 2.766-.134.482.176.474.37.346.153-.102 2.457-1.638 3.447-2.302.822.126 1.664.192 2.504.192 5.523 0 10-4.075 10-9.103C22 6.075 17.523 2 12 2zm3.326 10.395a.63.63 0 0 1-.63.632.632.632 0 0 1-.63-.632V7.728a.63.63 0 0 1 .63-.63h2.558c.349 0 .62.284.62.63 0 .347-.271.631-.62.631h-1.928v1.504h1.928z"/></svg>
                   <span>💬 另外洽詢訂購（專人服務）</span>
                 </button>
               `}
@@ -1437,7 +1447,7 @@
                 type="button" 
                 onclick="openInquiryModal('icedrip', '${item.id}')"
                 class="w-full sm:w-auto bg-[#06C755] hover:bg-[#05b34c] active:scale-95 text-white font-bold text-sm px-5 py-3 rounded-xl shadow-md transition flex items-center justify-center space-x-2 cursor-pointer">
-                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M19.365 9.863c.349.001.62.285.62.631 0 .346-.271.63-.62.63h-1.928v1.272h1.928c.349 0 .62.284.62.63 0 .348-.271.632-.62.632h-2.558a.63.63 0 0 1-.63-.632V7.728a.63.63 0 0 1 .63-.63h2.558c.349 0 .62.284.62.63 0 .347-.271.631-.62.631h-1.928v1.504h1.928zM12 2C6.477 2 2 6.075 2 11.103c0 3.195 1.777 6.009 4.492 7.55-.176.602-.705 2.378-.813 2.766-.134.482.176.474.37.346.153-.102 2.457-1.638 3.447-2.302.822.126 1.664.192 2.504.192 5.523 0 10-4.075 10-9.103C22 6.075 17.523 2 12 2zm3.326 10.395a.63.63 0 0 1-.63.632.632.632 0 0 1-.63-.632V7.728a.63.63 0 0 1 .63-.63h2.558c.349 0 .62.284.62.63 0 .347-.271.631-.62.631h-1.928v1.504h1.928z"/></svg>
+                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M19.365 9.863c.349.001.62.285.62.631 0 .346-.271.63-.62.63h-1.928v1.272h1.928c.349 0 .62.284.62.63 0 .348-.271.632-.62.632h-2.558a.63.63 0 0 1-.63-.632V7.728a.63.63 0 0 1 .63-.63h2.558c.349 0 .62.284.62.63 0 .347-.271.631-.62.631h-1.928v1.504h1.928zM12 2C6.477 2 2 6.075 2 11.103c0 3.195 1.777 6.009 4.492 7.55-.176.602-.705 2.378-.813 2.766-.134.482.176.474.37.346.153-.102 2.457-1.638 3.447-2.302.822.126 1.664.192 2.504.192 5.523 0 10-4.075 10-9.103C22 6.075 17.523 2 12 2zm3.326 10.395a.63.63 0 0 1-.63.632.632.632 0 0 1-.63-.632V7.728a.63.63 0 0 1 .63-.63h2.558c.349 0 .62.284.62.63 0 .347-.271.631-.62.631h-1.928v1.504h1.928zM12 2C6.477 2 2 6.075 2 11.103c0 3.195 1.777 6.009 4.492 7.55-.176.602-.705 2.378-.813 2.766-.134.482.176.474.37.346.153-.102 2.457-1.638 3.447-2.302.822.126 1.664.192 2.504.192 5.523 0 10-4.075 10-9.103C22 6.075 17.523 2 12 2zm3.326 10.395a.63.63 0 0 1-.63.632.632.632 0 0 1-.63-.632V7.728a.63.63 0 0 1 .63-.63h2.558c.349 0 .62.284.62.63 0 .347-.271.631-.62.631h-1.928v1.504h1.928z"/></svg>
                 <span>💬 我願意購買（專人服務訂購）</span>
               </button>
             </div>
@@ -1597,8 +1607,30 @@
         shippingFee = 80;
       }
 
+      // --- [新增邏輯] 全館滿額階梯折扣 ---
+      // 活動期間：即日起 ～ 11/15 止
+      // 全品項皆可折抵
+      const isEventActive = true; // 若活動結束，將 true 改為 false 即可關閉滿額折扣
+      let eventDiscount = 0;
+      let eventDiscountText = '';
+      
       const rawTotal = dripSubtotal + beanSubtotal;
-      const totalDiscount = dripDiscount + beanDiscount;
+      
+      // 先計算原本品項專屬的折抵，算出當前金額
+      let currentTotalAfterItemDiscount = rawTotal - (dripDiscount + beanDiscount);
+
+      if (isEventActive) {
+          if (currentTotalAfterItemDiscount >= 2000) {
+              eventDiscount = 300;
+              eventDiscountText = '滿 $2,000 折 $300';
+          } else if (currentTotalAfterItemDiscount >= 1000) {
+              eventDiscount = 100;
+              eventDiscountText = '滿 $1,000 折 $100';
+          }
+      }
+      // ------------------------------------
+
+      const totalDiscount = dripDiscount + beanDiscount + eventDiscount;
       const grandTotal = Math.max(0, rawTotal - totalDiscount + shippingFee);
 
       updateBadge('badge-drip-tab', dripUnits);
@@ -1629,7 +1661,9 @@
 
       const hintEl = document.getElementById('dock-promo-hint');
       if (hintEl) {
-        if (beanPounds >= 2 && dripUnits >= 4) {
+        if (eventDiscount > 0) {
+            hintEl.innerHTML = `<span class="text-[#06C755] font-bold">🎉 全館活動：已享 ${eventDiscountText} 優惠！</span>`;
+        } else if (beanPounds >= 2 && dripUnits >= 4) {
           hintEl.innerHTML = `<span class="text-[#06C755] font-bold">🎉 已享掛耳8折 ＋ 咖啡豆折$200 ＋ 免運費！</span>`;
         } else if (beanPounds >= 2) {
           hintEl.innerHTML = `<span class="text-[#06C755] font-bold">🎉 咖啡豆滿 2 磅：已折 $200 ＋ 免運費！</span>`;
@@ -1640,7 +1674,7 @@
         } else if (dripUnits >= 2) {
           hintEl.innerHTML = `<span class="text-[#FFD59E]">掛耳包已享 ${dripDiscountText}！加購 1 磅咖啡豆即可享免運</span>`;
         } else {
-          hintEl.innerText = '滿 2 份掛耳 9折，咖啡豆滿 1 磅免運、滿 2 磅折 $200！';
+          hintEl.innerText = '全館滿 $1000折$100 / 滿 $2000折$300 (即日起至11/15)';
         }
       }
 
@@ -1654,6 +1688,8 @@
         beanSubtotal,
         beanDiscount,
         beanFreeShip,
+        eventDiscount,     // 回傳全館活動折扣
+        eventDiscountText, // 回傳全館活動折扣文字
         shippingFee,
         rawTotal,
         totalDiscount,
@@ -1872,8 +1908,15 @@
 
       msg += `-------------------------\n`;
       msg += `💵 商品小計：NT$ ${stats.rawTotal}\n`;
+      
+      // --- [新增邏輯] 顯示全館活動折扣於 LINE 訂單 ---
+      if (stats.eventDiscount > 0) {
+          msg += `🎉 檔期活動折扣 (${stats.eventDiscountText})：-NT$ ${stats.eventDiscount}\n`;
+      }
+      // ---------------------------------------------
+      
       if (stats.totalDiscount > 0) {
-        msg += `🎉 優惠折抵：-NT$ ${stats.totalDiscount}\n`;
+        msg += `✨ 總優惠折抵：-NT$ ${stats.totalDiscount}\n`;
       }
       msg += `🚚 運費：NT$ ${stats.shippingFee} ${stats.beanFreeShip ? '(滿磅免運)' : ''}\n`;
       msg += `💰【含運應付總額：NT$ ${stats.grandTotal}】\n`;
