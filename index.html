@@ -230,7 +230,7 @@
       </div>
     </div>
 
-    <!-- 頂部四大分頁切換按鈕：特惠與新品 ➔ 咖啡豆 ➔ 掛耳包 ➔ 冰滴 -->
+    <!-- 頂部四大分頁切換按鈕 -->
     <div class="sticky top-2 z-20 mb-4 bg-white/95 backdrop-blur-md p-1.5 rounded-2xl shadow-md border border-[#D5C2AA]">
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-1.5">
         <button 
@@ -271,7 +271,7 @@
       </div>
     </div>
 
-    <!-- 類別一：最新特惠活動與新品上架 (預設首頁展示) -->
+    <!-- 類別一：最新特惠活動與新品上架 -->
     <section id="section-promo" class="space-y-3.5">
       <div class="bg-[#FFF1F2] border-l-4 border-[#E11D48] p-4 rounded-2xl shadow-sm text-xs sm:text-sm text-[#881337] space-y-1.5">
         <div class="flex items-center justify-between font-bold">
@@ -335,7 +335,7 @@
       <div id="drip-products-list" class="space-y-2.5"></div>
     </section>
 
-    <!-- 類別四：速必得冰滴咖啡專區 (專人訂購服務・無數量選單) -->
+    <!-- 類別四：速必得冰滴咖啡專區 -->
     <section id="section-icedrip" class="space-y-4 hidden">
       <!-- 藍色加大公告提示區 -->
       <div class="bg-gradient-to-r from-[#EFF6FF] to-[#E0F2FE] border-l-4 border-[#0284C7] p-4 sm:p-5 rounded-2xl shadow-sm text-[#0C4A6E] space-y-2">
@@ -444,7 +444,7 @@
     </div>
   </footer>
 
-  <!-- 專人服務訂購確認彈窗 (特惠活動與冰滴咖啡專用) -->
+  <!-- 專人服務訂購確認彈窗 -->
   <div id="inquiry-service-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-end sm:items-center justify-center p-0 sm:p-4">
     <div class="bg-[#FAF7F2] w-full max-w-lg rounded-t-3xl sm:rounded-2xl max-h-[92vh] flex flex-col shadow-2xl overflow-hidden border border-[#D5C2AA]">
       
@@ -523,7 +523,7 @@
     </div>
   </div>
 
-  <!-- 常態購物車訂單明細彈窗 (掛耳包與咖啡豆結帳) -->
+  <!-- 常態購物車訂單明細彈窗 -->
   <div id="order-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-end sm:items-center justify-center p-0 sm:p-4">
     <div class="bg-[#FAF7F2] w-full max-w-lg rounded-t-3xl sm:rounded-2xl max-h-[92vh] flex flex-col shadow-2xl overflow-hidden border border-[#D5C2AA]">
       
@@ -699,7 +699,7 @@
 
   <script>
      const DEFAULT_SHEET_ID = '1-IhxHvLO_PcEVPei-1zF1w6WUDhFNsYAFF-agvidZbc';
-    // 嚴格過濾與清除文字中可能出現的 "null" 與 "undefined"
+    
     function sanitizeText(str) {
       if (!str) return '';
       return String(str)
@@ -716,7 +716,6 @@
       return s;
     }
 
-    // 圖片壓縮函式（將手機上傳的巨大照片縮小並壓成 JPEG，保證永遠能存入 LocalStorage）
     function compressImage(file, maxDimension = 800, quality = 0.8) {
       return new Promise((resolve, reject) => {
         const reader = new FileReader();
@@ -750,7 +749,6 @@
       });
     }
 
-    // 預設掛耳包資料庫 (10 款，價格嚴格依 600 -> 700 -> 800 排列，不酸品項皆明確標示)
     const DEFAULT_DRIP_PRODUCTS = [
       { id: 'drip-a1', series: 'A系列', name: '濃情摩卡 (不酸)', price: 600, desc: '衣索比亞日曬，香濃不酸', packInfo: '25包/份' },
       { id: 'drip-a2', series: 'A系列', name: '瓜地馬拉 (不酸)', price: 600, desc: '薇薇特南果，層次豐富不酸', packInfo: '25包/份' },
@@ -764,7 +762,6 @@
       { id: 'drip-c4', series: 'C系列', name: '哥斯大黎加征服者 (不酸)', price: 800, desc: '拉米妮塔公司精品，巧克力香醇不酸', packInfo: '25包/份' }
     ];
 
-    // 預設咖啡豆資料庫 (嚴格校對共 25 款，9款不酸 ＋ 16款微酸/較酸；烏干達與拉斯拉哈斯黑靈魂標記新品)
     const DEFAULT_BEAN_PRODUCTS = [
       { id: 'bean-ns-1', tasteGroup: 'not-sour', sourType: '', name: '瓜地馬拉 薇薇特南果', process: '水洗', notes: '焦糖 核果風味 不會酸', price: 300, isOnePound: true },
       { id: 'bean-ns-2', tasteGroup: 'not-sour', sourType: '', name: '衣索比亞 濃情摩卡', process: '西達摩 日曬', notes: '絕對不酸 可以加牛奶', price: 300, isOnePound: true },
@@ -775,7 +772,6 @@
       { id: 'bean-ns-7', tasteGroup: 'not-sour', sourType: '', name: '哥斯大黎加 拉米妮塔', process: '征服者 La Minita El conquistador', notes: '可可 巧克力 厚度佳', price: 400, isOnePound: false },
       { id: 'bean-ns-8', tasteGroup: 'not-sour', sourType: '', name: '哥倫比亞 雪峰', process: '純鐵比卡種(稀少)', notes: '滑順香濃 巧克力風味', price: 400, isOnePound: false },
       { id: 'bean-ns-9', tasteGroup: 'not-sour', sourType: '', name: '虎牌 黃金曼特寧', process: '三次手選特級品', notes: '奶油 厚實 巧克力', price: 550, isOnePound: false },
-
       { id: 'bean-s-1', tasteGroup: 'sour', sourType: '微酸', name: '衣索比亞 耶加雪菲', process: '日曬 G3', notes: '紅葡萄 莓果 巧克力厚實', price: 400, isOnePound: false },
       { id: 'bean-s-2', tasteGroup: 'sour', sourType: '微酸', name: '衣索比亞 耶加雪菲', process: '水洗 G2', notes: '茉莉花香 檸檬 柑橘', price: 400, isOnePound: false },
       { id: 'bean-s-3', tasteGroup: 'sour', sourType: '較酸', name: '肯亞AA', process: '多門公司 水洗處理法', notes: '烏梅 黑糖 後韻紮實', price: 400, isOnePound: false },
@@ -794,7 +790,6 @@
       { id: 'bean-s-16', tasteGroup: 'sour', sourType: '微酸', name: '哥斯大黎加 拉斯拉哈斯莊園', process: '黑靈魂 日曬', notes: '黑棗、酒釀、烏梅、奶油般口感', price: 650, isOnePound: false, isNew: true }
     ];
 
-    // 預設「速必得冰滴咖啡」資料庫 (一瓶 200 元，滿 7 瓶免運，常溫配送)
     const DEFAULT_ICEDRIP_PRODUCTS = [
       {
         id: 'icedrip-1',
@@ -809,7 +804,6 @@
       }
     ];
 
-    // 預設「最新特惠活動與新品上架」資料庫 (第一款為三磅1500元免運超值特惠；新品項導流至咖啡豆選單)
     const DEFAULT_PROMO_PRODUCTS = [
       {
         id: 'promo-super-trio',
@@ -876,7 +870,6 @@
       return parseInt(clean, 10) || 0;
     }
 
-    // JSONP 連線核心
     function fetchGVizJSONP(sheetId, tabName = '', timeoutMs = 8000) {
       return new Promise((resolve, reject) => {
         const cbName = 'gviz_jsonp_' + Date.now() + '_' + Math.floor(Math.random() * 100000);
@@ -919,36 +912,34 @@
       });
     }
 
-    // 掛耳包智慧解析器（徹底杜絕 "null"、排除頁尾所有說明/聯絡雜訊，精準保留商品）
-    // 1. 新版掛耳包解析器 (對應標準直向格式)
     function transformDripRows(rows) {
       const list = [];
       rows.forEach((row, idx) => {
         if (!row || !row.c) return;
         const rawCells = row.c.map(c => getCleanCellString(c));
         const strCells = rawCells.filter(Boolean);
-        if (strCells.length < 2) return; // 略過空白或資料不足的列
+        if (strCells.length < 2) return; 
 
-        // 標準欄位：A:分類, B:品名, C:規格, D:風味, E:售價
         const category = rawCells[0] || 'A系列';
         let name = rawCells[1] || '';
         const packInfo = rawCells[2] || '25包/份';
         const desc = rawCells[3] || '手沖掛耳包';
         const priceStr = rawCells[4] || '';
+        const remark = rawCells[5] || ''; // 讀取掛耳包備註
         
-        if (name === '品項名稱' || name === '品名' || !name) return; // 略過標題列
+        if (name === '品項名稱' || name === '品名' || !name) return; 
 
-        // 處理價格
         let price = parseNumericPrice(priceStr);
-        if (price === 0) price = 600; // 防呆預設值
+        if (price === 0) price = 600; 
 
         name = sanitizeText(name);
         
-        // 自動加註不酸
         const isNotSour = desc.includes('不酸') || desc.includes('不會酸') || name.includes('不酸');
         if (isNotSour && !name.includes('(不酸)')) {
           name = `${name} (不酸)`;
         }
+
+        const isOutOfStock = remark.includes('缺貨');
 
         list.push({
           id: `drip-sheet-${idx}`,
@@ -956,13 +947,14 @@
           name: name,
           price: price,
           desc: sanitizeText(desc),
-          packInfo: sanitizeText(packInfo)
+          packInfo: sanitizeText(packInfo),
+          isOutOfStock: isOutOfStock,
+          stockMsg: isOutOfStock ? sanitizeText(remark) : ''
         });
       });
       return list;
     }
 
-    // 2. 新版咖啡豆解析器 (對應標準直向格式)
     function transformBeanRows(rows) {
       const list = [];
       rows.forEach((row, idx) => {
@@ -970,18 +962,17 @@
         const rawCells = row.c.map(c => getCleanCellString(c));
         if (rawCells.length < 2) return;
 
-        // 標準欄位：A:分類, B:品名, C:處理法, D:風味, E:售價, F:備註
         const category = rawCells[0] || '';
         const name = rawCells[1] || '';
         const process = rawCells[2] || '莊園特選';
         const notes = rawCells[3] || '純淨甜感，回甘深遠';
         const priceStr = rawCells[4] || '';
-        const remark = rawCells[5] || '';
+        const remark = rawCells[5] || ''; // 讀取咖啡豆備註
 
-        if (name === '品項名稱' || name === '第一行(國家或莊園)' || !name) return; // 略過標題列
+        if (name === '品項名稱' || name === '第一行(國家或莊園)' || !name) return; 
 
         let price = parseNumericPrice(priceStr);
-        if (price <= 0) return; // 沒價格就不顯示
+        if (price <= 0) return; 
 
         let tasteGroup = 'sour';
         let sourType = '微酸';
@@ -996,6 +987,9 @@
 
         const isOnePound = remark.includes('一磅');
         const isNewArrival = name.includes('拉斯拉哈斯') || (name.includes('烏干達') && process.includes('日曬'));
+        
+        // 判斷備註是否包含「缺貨」字樣
+        const isOutOfStock = remark.includes('缺貨');
 
         list.push({
           id: `bean-sheet-${idx}`,
@@ -1006,13 +1000,14 @@
           notes: sanitizeText(notes),
           price: price,
           isOnePound,
-          isNew: isNewArrival
+          isNew: isNewArrival,
+          isOutOfStock: isOutOfStock, // 新增缺貨屬性
+          stockMsg: isOutOfStock ? sanitizeText(remark) : '' // 抓取缺貨公告文字
         });
       });
       return list;
     }
 
-    // 3. 新版專人服務專區 (冰滴與特惠活動) 解析器 (對應標準直向格式)
     function transformInquiryRows(rows, defaultType = 'promo') {
       const list = [];
       const isIce = (defaultType === 'icedrip');
@@ -1023,7 +1018,6 @@
         const strCells = rawCells.filter(Boolean);
         if (strCells.length < 2) return;
 
-        // 標準欄位：A:分類, B:品名, C:規格, D:風味, E:售價, F:備註
         const category = rawCells[0] || '';
         const name = rawCells[1] || '';
         const spec = rawCells[2] || '';
@@ -1031,7 +1025,7 @@
         const priceStr = rawCells[4] || '';
         const remark = rawCells[5] || '';
 
-        if (name === '品項名稱' || name === '品名' || !name) return; // 略過標題列
+        if (name === '品項名稱' || name === '品名' || !name) return; 
 
         let price = parseNumericPrice(priceStr);
         
@@ -1047,10 +1041,9 @@
             notice: '每瓶 200 元・滿 7 瓶即享免運費 (常溫配送，取貨後請冷藏保存)'
           });
         } else {
-          // 特惠活動
           let tag = sanitizeText(category) || '新品上架';
           let isSuperPromo = category.includes('超值') || name.includes('三磅') || price === 1500;
-          let isRedirectBean = !isSuperPromo; // 如果不是超值特惠，預設導向咖啡豆區
+          let isRedirectBean = !isSuperPromo; 
 
           list.push({
             id: `promo-${idx}`,
@@ -1069,6 +1062,7 @@
       });
       return list;
     }
+
     async function loadDataFromCloudSheet(isManual = false) {
       const statusBar = document.getElementById('sync-status-text');
       const dot = document.getElementById('sync-dot');
@@ -1177,7 +1171,6 @@
       recalculateTotals();
     }
 
-    // 渲染掛耳包
     function renderDripProducts() {
       const container = document.getElementById('drip-products-list');
       const badge = document.getElementById('drip-count-badge');
@@ -1203,19 +1196,26 @@
             </div>
             
             <div class="flex items-center justify-between sm:justify-end space-x-2.5 pt-2 sm:pt-0 border-t sm:border-t-0 border-[#F0E6D8]">
-              <span class="text-xs text-gray-500 sm:hidden">選購數量：</span>
-              <div class="flex items-center space-x-1 bg-[#F6F0E6] p-1 rounded-xl border border-[#D8C7B2]">
-                <button type="button" onclick="updateQty('${item.id}', -1)" class="w-8 h-8 rounded-lg bg-white text-[#3E2519] font-bold shadow-sm active:scale-95 flex items-center justify-center hover:bg-[#EFE5D5]">-</button>
-                <span id="qty-${item.id}" class="w-9 text-center font-bold text-sm text-[#2D1A10]">${curQty}</span>
-                <button type="button" onclick="updateQty('${item.id}', 1)" class="w-8 h-8 rounded-lg bg-[#2B170E] text-white font-bold shadow-sm active:scale-95 flex items-center justify-center hover:bg-[#4E2F1C]">+</button>
-              </div>
+              ${item.isOutOfStock ? `
+                <div class="flex-1 text-right sm:text-center mt-2 sm:mt-0">
+                  <span class="text-xs sm:text-sm font-bold text-[#8A5B3D] bg-[#F8F3EA] px-3 py-1.5 rounded-xl border border-[#D5C2AA] inline-block shadow-sm">
+                    ⚠️ ${item.stockMsg}
+                  </span>
+                </div>
+              ` : `
+                <span class="text-xs text-gray-500 sm:hidden">選購數量：</span>
+                <div class="flex items-center space-x-1 bg-[#F6F0E6] p-1 rounded-xl border border-[#D8C7B2]">
+                  <button type="button" onclick="updateQty('${item.id}', -1)" class="w-8 h-8 rounded-lg bg-white text-[#3E2519] font-bold shadow-sm active:scale-95 flex items-center justify-center hover:bg-[#EFE5D5]">-</button>
+                  <span id="qty-${item.id}" class="w-9 text-center font-bold text-sm text-[#2D1A10]">${curQty}</span>
+                  <button type="button" onclick="updateQty('${item.id}', 1)" class="w-8 h-8 rounded-lg bg-[#2B170E] text-white font-bold shadow-sm active:scale-95 flex items-center justify-center hover:bg-[#4E2F1C]">+</button>
+                </div>
+              `}
             </div>
           </div>
         `;
       }).join('');
     }
 
-    // 渲染咖啡豆卡片
     function renderBeanCard(item) {
       const isEvenOnly = item.isOnePound;
       const curQty = cart[item.id] || 0;
@@ -1247,28 +1247,36 @@
           </div>
           
           <div class="flex items-center justify-between sm:justify-end space-x-2.5 pt-2 sm:pt-0 border-t sm:border-t-0 border-[#F0E6D8]">
-            <div class="text-right">
-              <span class="text-xs text-gray-500 block">${isEvenOnly ? '選購 (限偶數包)：' : '選購 (半磅/包)：'}</span>
-              ${isEvenOnly ? '<span class="text-[10px] text-[#B74127] font-semibold">2包 = 1磅裝</span>' : ''}
-            </div>
-
-            ${isEvenOnly ? `
-              <div class="relative">
-                <select id="select-${item.id}" onchange="setEvenQuantity('${item.id}', this.value)" class="bg-[#F8F1E5] border-2 border-[#C8934A] text-[#2B170E] font-bold text-sm py-1.5 px-2.5 rounded-xl focus:outline-none">
-                  <option value="0" ${curQty === 0 ? 'selected' : ''}>0 包</option>
-                  <option value="2" ${curQty === 2 ? 'selected' : ''}>2 包 (1 磅)</option>
-                  <option value="4" ${curQty === 4 ? 'selected' : ''}>4 包 (2 磅)</option>
-                  <option value="6" ${curQty === 6 ? 'selected' : ''}>6 包 (3 磅)</option>
-                  <option value="8" ${curQty === 8 ? 'selected' : ''}>8 包 (4 磅)</option>
-                  <option value="10" ${curQty === 10 ? 'selected' : ''}>10 包 (5 磅)</option>
-                </select>
+            ${item.isOutOfStock ? `
+              <div class="flex-1 text-right sm:text-center mt-2 sm:mt-0">
+                <span class="text-xs sm:text-sm font-bold text-[#8A5B3D] bg-[#F8F3EA] px-3 py-1.5 rounded-xl border border-[#D5C2AA] inline-block shadow-sm">
+                  ⚠️ ${item.stockMsg}
+                </span>
               </div>
             ` : `
-              <div class="flex items-center space-x-1 bg-[#F6F0E6] p-1 rounded-xl border border-[#D8C7B2]">
-                <button type="button" onclick="updateQty('${item.id}', -1)" class="w-8 h-8 rounded-lg bg-white text-[#3E2519] font-bold shadow-sm active:scale-95 flex items-center justify-center hover:bg-[#EFE5D5]">-</button>
-                <span id="qty-${item.id}" class="w-9 text-center font-bold text-sm text-[#2D1A10]">${curQty}</span>
-                <button type="button" onclick="updateQty('${item.id}', 1)" class="w-8 h-8 rounded-lg bg-[#2B170E] text-white font-bold shadow-sm active:scale-95 flex items-center justify-center hover:bg-[#4E2F1C]">+</button>
+              <div class="text-right">
+                <span class="text-xs text-gray-500 block">${isEvenOnly ? '選購 (限偶數包)：' : '選購 (半磅/包)：'}</span>
+                ${isEvenOnly ? '<span class="text-[10px] text-[#B74127] font-semibold">2包 = 1磅裝</span>' : ''}
               </div>
+
+              ${isEvenOnly ? `
+                <div class="relative">
+                  <select id="select-${item.id}" onchange="setEvenQuantity('${item.id}', this.value)" class="bg-[#F8F1E5] border-2 border-[#C8934A] text-[#2B170E] font-bold text-sm py-1.5 px-2.5 rounded-xl focus:outline-none">
+                    <option value="0" ${curQty === 0 ? 'selected' : ''}>0 包</option>
+                    <option value="2" ${curQty === 2 ? 'selected' : ''}>2 包 (1 磅)</option>
+                    <option value="4" ${curQty === 4 ? 'selected' : ''}>4 包 (2 磅)</option>
+                    <option value="6" ${curQty === 6 ? 'selected' : ''}>6 包 (3 磅)</option>
+                    <option value="8" ${curQty === 8 ? 'selected' : ''}>8 包 (4 磅)</option>
+                    <option value="10" ${curQty === 10 ? 'selected' : ''}>10 包 (5 磅)</option>
+                  </select>
+                </div>
+              ` : `
+                <div class="flex items-center space-x-1 bg-[#F6F0E6] p-1 rounded-xl border border-[#D8C7B2]">
+                  <button type="button" onclick="updateQty('${item.id}', -1)" class="w-8 h-8 rounded-lg bg-white text-[#3E2519] font-bold shadow-sm active:scale-95 flex items-center justify-center hover:bg-[#EFE5D5]">-</button>
+                  <span id="qty-${item.id}" class="w-9 text-center font-bold text-sm text-[#2D1A10]">${curQty}</span>
+                  <button type="button" onclick="updateQty('${item.id}', 1)" class="w-8 h-8 rounded-lg bg-[#2B170E] text-white font-bold shadow-sm active:scale-95 flex items-center justify-center hover:bg-[#4E2F1C]">+</button>
+                </div>
+              `}
             `}
           </div>
         </div>
@@ -1292,7 +1300,6 @@
       document.getElementById('beans-sour-list').innerHTML = sourBeans.map(renderBeanCard).join('');
     }
 
-    // 渲染特惠活動與新品上架
     function renderPromoProducts() {
       const container = document.getElementById('promo-products-list');
       const badge = document.getElementById('promo-count-badge');
@@ -1366,7 +1373,6 @@
       }).join('');
     }
 
-    // 渲染冰滴咖啡
     function renderIcedripProducts() {
       const container = document.getElementById('icedrip-products-list');
       const badge = document.getElementById('icedrip-count-badge');
@@ -1475,7 +1481,6 @@
       recalculateTotals();
     }
 
-    // 分頁切換 (特惠與新品 ➔ 咖啡豆 ➔ 掛耳包 ➔ 冰滴)
     function switchCategoryTab(cat) {
       const promoSec = document.getElementById('section-promo');
       const beanSec = document.getElementById('section-bean');
@@ -1506,7 +1511,6 @@
       });
     }
 
-    // 新品項點選跳轉至咖啡豆選單
     function goToBeanCategory(beanName) {
       switchCategoryTab('bean');
       showToast(`已為您切換至咖啡豆選單！`);
@@ -1607,16 +1611,11 @@
         shippingFee = 80;
       }
 
-      // --- [新增邏輯] 全館滿額階梯折扣 ---
-      // 活動期間：即日起 ～ 11/15 止
-      // 全品項皆可折抵
-      const isEventActive = true; // 若活動結束，將 true 改為 false 即可關閉滿額折扣
+      const isEventActive = true; 
       let eventDiscount = 0;
       let eventDiscountText = '';
       
       const rawTotal = dripSubtotal + beanSubtotal;
-      
-      // 先計算原本品項專屬的折抵，算出當前金額
       let currentTotalAfterItemDiscount = rawTotal - (dripDiscount + beanDiscount);
 
       if (isEventActive) {
@@ -1628,7 +1627,6 @@
               eventDiscountText = '滿 $1,000 折 $100';
           }
       }
-      // ------------------------------------
 
       const totalDiscount = dripDiscount + beanDiscount + eventDiscount;
       const grandTotal = Math.max(0, rawTotal - totalDiscount + shippingFee);
@@ -1688,8 +1686,8 @@
         beanSubtotal,
         beanDiscount,
         beanFreeShip,
-        eventDiscount,     // 回傳全館活動折扣
-        eventDiscountText, // 回傳全館活動折扣文字
+        eventDiscount,     
+        eventDiscountText, 
         shippingFee,
         rawTotal,
         totalDiscount,
@@ -1815,7 +1813,6 @@
       showToast('📋 洽詢訊息已複製到剪貼簿！');
     }
 
-    // 冰滴咖啡相片上傳處理（自動進行前端 Canvas 壓縮，防範 LocalStorage 容量超標）
     async function handleIcedripPhotoUpload(input, itemId) {
       if (input.files && input.files[0]) {
         try {
@@ -1909,11 +1906,9 @@
       msg += `-------------------------\n`;
       msg += `💵 商品小計：NT$ ${stats.rawTotal}\n`;
       
-      // --- [新增邏輯] 顯示全館活動折扣於 LINE 訂單 ---
       if (stats.eventDiscount > 0) {
           msg += `🎉 檔期活動折扣 (${stats.eventDiscountText})：-NT$ ${stats.eventDiscount}\n`;
       }
-      // ---------------------------------------------
       
       if (stats.totalDiscount > 0) {
         msg += `✨ 總優惠折抵：-NT$ ${stats.totalDiscount}\n`;
