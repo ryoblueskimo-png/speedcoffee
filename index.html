@@ -939,7 +939,7 @@
           name = `${name} (不酸)`;
         }
 
-        const isOutOfStock = remark.includes('缺貨');
+        const isOutOfStock = remark.includes('缺貨') || remark.includes('完售') || remark.includes('售完');
 
         list.push({
           id: `drip-sheet-${idx}`,
@@ -989,7 +989,7 @@
         const isNewArrival = name.includes('拉斯拉哈斯') || (name.includes('烏干達') && process.includes('日曬'));
         
         // 判斷備註是否包含「缺貨」字樣
-        const isOutOfStock = remark.includes('缺貨');
+        const isOutOfStock = remark.includes('缺貨') || remark.includes('完售') || remark.includes('售完');
 
         list.push({
           id: `bean-sheet-${idx}`,
