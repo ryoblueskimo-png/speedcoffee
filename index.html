@@ -219,7 +219,7 @@
 
   <main class="max-w-2xl mx-auto px-3.5 sm:px-4 py-4">
 
-    <!-- 優惠與配送折抵規則卡片 -->
+    <!-- 優惠與配送折抵規則卡片（全部由試算表「活動設定」與「限時限定品項優惠」動態渲染） -->
     <div class="bg-white/95 backdrop-blur-md text-[#2B170E] p-4 rounded-2xl shadow-md mb-4 border border-[#C8934A]/60">
       <div class="flex items-center space-x-2 border-b border-[#D5C2AA]/40 pb-2 mb-2.5">
         <span class="text-lg">✨</span>
@@ -231,29 +231,37 @@
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs sm:text-sm">
         <div class="bg-[#FAF6F0] p-2.5 rounded-xl border border-[#D5C2AA]/50">
           <p class="font-bold text-[#8A5B3D] mb-1">📦 掛耳包專區（25包/份）</p>
-          <ul class="space-y-0.5 text-[#5C3923] text-xs">
+          <ul id="promo-card-drip-rules" class="space-y-0.5 text-[#5C3923] text-xs">
             <li>• 任選滿 <strong class="text-[#B74127] font-bold">2 份享 9 折</strong></li>
             <li>• 任選滿 <strong class="text-[#B74127] font-bold">4 份享 8 折</strong></li>
           </ul>
         </div>
         <div class="bg-[#FAF6F0] p-2.5 rounded-xl border border-[#D5C2AA]/50">
           <p class="font-bold text-[#8A5B3D] mb-1">🫘 咖啡豆專區（半磅/包）</p>
-          <ul class="space-y-0.5 text-[#5C3923] text-xs">
+          <ul id="promo-card-bean-rules" class="space-y-0.5 text-[#5C3923] text-xs">
             <li>• 滿 1 磅（2包半磅）即享 <strong class="text-[#06C755] font-bold">免運費</strong></li>
             <li>• 滿 2 磅（4包半磅）現折 <strong class="text-[#B74127] font-bold">200元 ＋ 免運</strong></li>
           </ul>
         </div>
       </div>
 
-      <!-- 動態全館滿額折扣公告區塊（自動依活動設定與截止時間顯示或隱藏） -->
-      <div id="global-event-banner" class="hidden mt-2 bg-[#FFF1F2] border border-[#FECDD3] p-2 rounded-xl text-xs sm:text-sm">
-        <p id="global-event-title" class="font-bold text-[#BE123C] mb-1">🎉 檔期活動</p>
-        <ul id="global-event-rules" class="space-y-0.5 text-[#881337] text-xs">
-        </ul>
+      <!-- 動態全館限時滿額折扣公告區塊 -->
+      <div id="global-event-banner" class="hidden mt-2.5 bg-[#FFF1F2] border border-[#FECDD3] p-2.5 rounded-xl text-xs sm:text-sm">
+        <div class="flex items-center justify-between flex-wrap gap-1 mb-1">
+          <p id="global-event-title" class="font-bold text-[#BE123C]">🎉 限時滿額折抵活動</p>
+          <span id="global-event-stack-badge" class="text-[10px] bg-white text-[#9F1239] border border-[#FDA4AF] px-2 py-0.5 rounded-full font-bold"></span>
+        </div>
+        <ul id="global-event-rules" class="space-y-0.5 text-[#881337] text-xs"></ul>
       </div>
 
-      <div class="mt-2 text-[11px] text-[#8A5B3D] flex justify-between">
-        <span>* 基本運費 $80（咖啡豆滿 1 磅自動免運）</span>
+      <!-- 動態限時限定品項優惠公告區塊 -->
+      <div id="item-promo-banner" class="hidden mt-2.5 bg-[#FFFBEB] border border-[#FDE68A] p-2.5 rounded-xl text-xs sm:text-sm">
+        <p class="font-bold text-[#B45309] mb-1">🏷️ 限時指定品項優惠</p>
+        <ul id="item-promo-rules" class="space-y-1 text-[#78350F] text-xs"></ul>
+      </div>
+
+      <div class="mt-2 text-[11px] text-[#8A5B3D] flex flex-wrap justify-between gap-1">
+        <span id="promo-card-shipping-note">* 基本運費 $80（咖啡豆滿 1 磅自動免運）</span>
         <span class="text-[#B74127] font-semibold">兩類可合併結帳・特惠企劃與冰滴享專人訂購</span>
       </div>
     </div>
@@ -375,7 +383,7 @@
             </h3>
           </div>
           <div class="flex items-center space-x-1.5">
-            <span class="text-xs bg-[#0284C7] text-white px-2.5 py-1 rounded-full font-bold shadow-sm">
+            <span id="icedrip-freeship-badge" class="text-xs bg-[#0284C7] text-white px-2.5 py-1 rounded-full font-bold shadow-sm">
               🚚 滿 7 瓶免運費
             </span>
             <span id="icedrip-count-badge" class="text-xs bg-[#BAE6FD] text-[#0369A1] px-2.5 py-1 rounded-md font-bold">
@@ -384,7 +392,7 @@
           </div>
         </div>
         <div class="text-xs sm:text-sm text-[#0369A1] leading-relaxed space-y-1">
-          <p class="font-bold text-[#075985] text-sm sm:text-base">
+          <p id="icedrip-banner-notice" class="font-bold text-[#075985] text-sm sm:text-base">
             ※ 專案特惠：每瓶 200 元｜滿 7 瓶即享免運費出貨 (常溫配送，取貨後請冷藏保存)！
           </p>
           <p>
@@ -465,7 +473,7 @@
             <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
               <path d="M19.365 9.863c.349.001.62.285.62.631 0 .346-.271.63-.62.63h-1.928v1.272h1.928c.349 0 .62.284.62.63 0 .348-.271.632-.62.632h-2.558a.63.63 0 0 1-.63-.632V7.728a.63.63 0 0 1 .63-.63h2.558c.349 0 .62.284.62.63 0 .347-.271.631-.62.631h-1.928v1.504h1.928zM12 2C6.477 2 2 6.075 2 11.103c0 3.195 1.777 6.009 4.492 7.55-.176.602-.705 2.378-.813 2.766-.134.482.176.474.37.346.153-.102 2.457-1.638 3.447-2.302.822.126 1.664.192 2.504.192 5.523 0 10-4.075 10-9.103C22 6.075 17.523 2 12 2zm3.326 10.395a.63.63 0 0 1-.63.632.632.632 0 0 1-.63-.632V7.728a.63.63 0 0 1 .63-.63h2.558c.349 0 .62.284.62.63 0 .347-.271.631-.62.631h-1.928v1.504h1.928zM12 2C6.477 2 2 6.075 2 11.103c0 3.195 1.777 6.009 4.492 7.55-.176.602-.705 2.378-.813 2.766-.134.482.176.474.37.346.153-.102 2.457-1.638 3.447-2.302.822.126 1.664.192 2.504.192 5.523 0 10-4.075 10-9.103C22 6.075 17.523 2 12 2zm3.326 10.395a.63.63 0 0 1-.63.632.632.632 0 0 1-.63-.632V7.728a.63.63 0 0 1 .63-.63h2.558c.349 0 .62.284.62.63 0 .347-.271.631-.62.631h-1.928v1.504h1.928z"/>
             </svg>
-            <span>LINE 洽詢訂購</span>
+            <span>一鍵送出訂單</span>
           </button>
         </div>
       </div>
@@ -490,7 +498,7 @@
           <!-- 動態插入未達成優惠項目 -->
         </div>
         <p class="text-[11px] text-[#8A5B3D]">
-          ※ 您可以選擇返回繼續挑選湊滿優惠，或直接進入結帳明細送出訂單。
+          ※ 您可以選擇返回繼續挑選湊滿優惠，或直接進入結帳明細確認送出。
         </p>
       </div>
 
@@ -511,7 +519,7 @@
     </div>
   </div>
 
-  <!-- 專人服務訂購確認彈窗 -->
+  <!-- 專人服務訂購確認彈窗（精簡版：僅保留綠色官方 LINE 按鈕） -->
   <div id="inquiry-service-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-end sm:items-center justify-center p-0 sm:p-4">
     <div class="bg-[#FAF7F2] w-full max-w-lg rounded-t-3xl sm:rounded-2xl max-h-[92vh] flex flex-col shadow-2xl overflow-hidden border border-[#D5C2AA]">
       
@@ -525,11 +533,7 @@
       </div>
 
       <div class="flex-1 overflow-y-auto p-4 space-y-3.5 text-xs sm:text-sm">
-        
-        <!-- 所選品項詳情卡片 -->
-        <div id="inquiry-item-detail" class="bg-white p-3.5 rounded-2xl border border-[#D5C2AA] shadow-sm space-y-1.5">
-          <!-- 動態置入所選品項 -->
-        </div>
+        <div id="inquiry-item-detail" class="bg-white p-3.5 rounded-2xl border border-[#D5C2AA] shadow-sm space-y-1.5"></div>
 
         <div class="p-3 bg-[#E0F2FE] rounded-xl border border-[#BAE6FD] text-xs space-y-1 text-[#0369A1]">
           <p class="font-bold flex items-center space-x-1">
@@ -540,7 +544,6 @@
           </p>
         </div>
 
-        <!-- 預先拷貝之洽詢文字預覽 -->
         <div class="p-3 bg-[#FFF9ED] rounded-xl border border-[#E8D4BA] space-y-1.5">
           <div class="flex items-center justify-between">
             <span class="font-bold text-[#8C2D19] text-xs">📋 洽詢訊息文字（已為您複製好）：</span>
@@ -553,10 +556,9 @@
             💡 若開啟 LINE 後輸入框未自動帶入文字，在對話框「長按貼上」即可傳送！
           </p>
         </div>
-
       </div>
 
-      <div class="p-3 bg-white border-t border-[#E3D6C5] space-y-2">
+      <div class="p-3 bg-white border-t border-[#E3D6C5]">
         <a 
           id="btn-send-inquiry-oa"
           href="https://line.me/R/oaMessage/%40sxn5987q/?我要訂購" 
@@ -566,41 +568,22 @@
           <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M19.365 9.863c.349.001.62.285.62.631 0 .346-.271.63-.62.63h-1.928v1.272h1.928c.349 0 .62.284.62.63 0 .348-.271.632-.62.632h-2.558a.63.63 0 0 1-.63-.632V7.728a.63.63 0 0 1 .63-.63h2.558c.349 0 .62.284.62.63 0 .347-.271.631-.62.631h-1.928v1.504h1.928zM12 2C6.477 2 2 6.075 2 11.103c0 3.195 1.777 6.009 4.492 7.55-.176.602-.705 2.378-.813 2.766-.134.482.176.474.37.346.153-.102 2.457-1.638 3.447-2.302.822.126 1.664.192 2.504.192 5.523 0 10-4.075 10-9.103C22 6.075 17.523 2 12 2zm3.326 10.395a.63.63 0 0 1-.63.632.632.632 0 0 1-.63-.632V7.728a.63.63 0 0 1 .63-.63h2.558c.349 0 .62.284.62.63 0 .347-.271.631-.62.631h-1.928v1.504h1.928zM12 2C6.477 2 2 6.075 2 11.103c0 3.195 1.777 6.009 4.492 7.55-.176.602-.705 2.378-.813 2.766-.134.482.176.474.37.346.153-.102 2.457-1.638 3.447-2.302.822.126 1.664.192 2.504.192 5.523 0 10-4.075 10-9.103C22 6.075 17.523 2 12 2zm3.326 10.395a.63.63 0 0 1-.63.632.632.632 0 0 1-.63-.632V7.728a.63.63 0 0 1 .63-.63h2.558c.349 0 .62.284.62.63 0 .347-.271.631-.62.631h-1.928v1.504h1.928z"/></svg>
           <span>🟢 前往官方 LINE 洽詢專人訂購 (@sxn5987q)</span>
         </a>
-
-        <div class="grid grid-cols-2 gap-2">
-          <a 
-            id="btn-send-inquiry-app"
-            href="line://oaMessage/%40sxn5987q/?我要訂購" 
-            target="_top"
-            onclick="handleInquiryAppProtocol(event)"
-            class="py-2.5 px-2 rounded-xl bg-[#EFE6D8] hover:bg-[#E4D5C2] text-[#2B170E] font-bold text-xs text-center border border-[#C8934A] flex items-center justify-center">
-            <span>⚡ LINE App 直開協定</span>
-          </a>
-
-          <a 
-            href="https://line.me/ti/p/~speedcoffee" 
-            target="_blank"
-            onclick="handleInquiryPersonal(event)"
-            class="py-2.5 px-2 rounded-xl bg-[#EFE6D8] hover:bg-[#E4D5C2] text-[#2B170E] font-bold text-xs text-center border border-[#C8934A] flex items-center justify-center">
-            <span>💬 改傳 個人 LINE (speedcoffee)</span>
-          </a>
-        </div>
       </div>
 
     </div>
   </div>
 
-  <!-- 常態購物車訂單明細彈窗 -->
+  <!-- 常態購物車訂單明細彈窗（支援視窗內直接加減/刪除品項 ＋ 繼續加點其他品項 ＋ 精簡綠色送出鍵） -->
   <div id="order-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-end sm:items-center justify-center p-0 sm:p-4">
     <div class="bg-[#FAF7F2] w-full max-w-lg rounded-t-3xl sm:rounded-2xl max-h-[92vh] flex flex-col shadow-2xl overflow-hidden border border-[#D5C2AA]">
       
       <div class="bg-[#2B170E] text-[#FAF2E5] px-4 py-3.5 flex items-center justify-between">
         <h3 class="font-serif font-bold text-base sm:text-lg flex items-center space-x-2">
-          <span>🧾 訂單確認與傳送 LINE</span>
+          <span>🧾 訂單確認與修改明細</span>
         </h3>
         <div class="flex items-center space-x-2">
           <button type="button" onclick="confirmClearCart()" class="text-[11px] bg-red-800/80 hover:bg-red-700 text-white px-2 py-1 rounded-lg border border-red-500/40">
-            🗑️ 清空品項
+            🗑️ 清空全部
           </button>
           <button type="button" onclick="closeOrderModal()" class="text-gray-300 hover:text-white p-1 text-2xl font-bold leading-none">
             ✕
@@ -609,8 +592,20 @@
       </div>
 
       <div class="flex-1 overflow-y-auto p-4 space-y-3 text-xs sm:text-sm">
-        
+        <div class="flex items-center justify-between text-[11px] text-[#8A5B3D] px-1">
+          <span>💡 可直接在下方調整各品項包數或刪除：</span>
+        </div>
+
+        <!-- 動態可編輯已選商品列表 -->
         <div id="modal-items-container" class="space-y-2"></div>
+
+        <!-- 繼續加點其他品項按鈕 -->
+        <button 
+          type="button" 
+          onclick="continueShoppingFromModal()" 
+          class="w-full py-2.5 px-3 rounded-xl bg-white hover:bg-[#F3EADB] active:scale-[0.99] text-[#2B170E] font-bold text-xs sm:text-sm border-2 border-dashed border-[#C8934A] transition flex items-center justify-center space-x-1.5 shadow-sm">
+          <span>➕ 繼續加點其他品項（咖啡豆 / 掛耳包）</span>
+        </button>
 
         <div class="bg-[#F1E8DC] p-3 rounded-xl border border-[#DCCBB4] space-y-1">
           <div class="flex justify-between text-gray-700">
@@ -621,6 +616,7 @@
             <span>活動優惠折抵</span>
             <span>- NT$ <span id="modal-discount">0</span></span>
           </div>
+          <div id="modal-discount-detail" class="text-[11px] text-[#8A5B3D] space-y-0.5 pl-2 border-l-2 border-[#C8934A] hidden"></div>
           <div class="flex justify-between text-gray-700">
             <span>運費（<span id="modal-shipping-status">基本運費</span>）</span>
             <span>NT$ <span id="modal-shipping">0</span></span>
@@ -642,7 +638,7 @@
           <div class="flex items-center justify-between">
             <span class="font-bold text-[#8C2D19] text-xs">📋 訂購訊息內容（已預先拷貝）：</span>
             <button type="button" onclick="copyOrderTextAction()" class="bg-[#2B170E] text-[#F3EADB] px-2.5 py-1 rounded-md text-[11px] font-bold active:scale-95">
-              手掌握複製
+              手動複製
             </button>
           </div>
           <textarea id="order-text-preview" rows="4" readonly class="w-full p-2 bg-white rounded-lg border border-[#D9C4AB] text-[11px] text-[#4A2D1B] font-mono select-all focus:outline-none"></textarea>
@@ -658,10 +654,10 @@
             <p>可長按存圖或直接搜尋 ID 加好友聯絡烘豆師。</p>
           </div>
         </div>
-
       </div>
 
-      <div class="p-3 bg-white border-t border-[#E3D6C5] space-y-2">
+      <!-- 底部僅保留綠色官方 LINE 按鈕 -->
+      <div class="p-3 bg-white border-t border-[#E3D6C5]">
         <a 
           id="btn-send-oa"
           href="https://line.me/R/oaMessage/%40sxn5987q/?我要訂購咖啡" 
@@ -671,25 +667,6 @@
           <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M19.365 9.863c.349.001.62.285.62.631 0 .346-.271.63-.62.63h-1.928v1.272h1.928c.349 0 .62.284.62.63 0 .348-.271.632-.62.632h-2.558a.63.63 0 0 1-.63-.632V7.728a.63.63 0 0 1 .63-.63h2.558c.349 0 .62.284.62.63 0 .347-.271.631-.62.631h-1.928v1.504h1.928zM12 2C6.477 2 2 6.075 2 11.103c0 3.195 1.777 6.009 4.492 7.55-.176.602-.705 2.378-.813 2.766-.134.482.176.474.37.346.153-.102 2.457-1.638 3.447-2.302.822.126 1.664.192 2.504.192 5.523 0 10-4.075 10-9.103C22 6.075 17.523 2 12 2zm3.326 10.395a.63.63 0 0 1-.63.632.632.632 0 0 1-.63-.632V7.728a.63.63 0 0 1 .63-.63h2.558c.349 0 .62.284.62.63 0 .347-.271.631-.62.631h-1.928v1.504h1.928zM12 2C6.477 2 2 6.075 2 11.103c0 3.195 1.777 6.009 4.492 7.55-.176.602-.705 2.378-.813 2.766-.134.482.176.474.37.346.153-.102 2.457-1.638 3.447-2.302.822.126 1.664.192 2.504.192 5.523 0 10-4.075 10-9.103C22 6.075 17.523 2 12 2zm3.326 10.395a.63.63 0 0 1-.63.632.632.632 0 0 1-.63-.632V7.728a.63.63 0 0 1 .63-.63h2.558c.349 0 .62.284.62.63 0 .347-.271.631-.62.631h-1.928v1.504h1.928z"/></svg>
           <span>🟢 開啟官方 LINE 聊天室 (@sxn5987q)</span>
         </a>
-
-        <div class="grid grid-cols-2 gap-2">
-          <a 
-            id="link-app-direct"
-            href="line://oaMessage/%40sxn5987q/?我要訂購咖啡" 
-            target="_top"
-            onclick="handleAppProtocol(event)"
-            class="py-2.5 px-2 rounded-xl bg-[#EFE6D8] hover:bg-[#E4D5C2] text-[#2B170E] font-bold text-xs text-center border border-[#C8934A] flex items-center justify-center">
-            <span>⚡ LINE App 直開協定</span>
-          </a>
-
-          <a 
-            href="https://line.me/ti/p/~speedcoffee" 
-            target="_blank"
-            onclick="handlePersonalLine(event)"
-            class="py-2.5 px-2 rounded-xl bg-[#EFE6D8] hover:bg-[#E4D5C2] text-[#2B170E] font-bold text-xs text-center border border-[#C8934A] flex items-center justify-center">
-            <span>💬 改傳 個人 LINE (speedcoffee)</span>
-          </a>
-        </div>
       </div>
 
     </div>
@@ -705,7 +682,6 @@
         <button type="button" onclick="closeSheetConfigModal()" class="text-gray-400 hover:text-black font-bold text-xl">✕</button>
       </div>
 
-      <!-- 診斷報告顯示盒 -->
       <div id="diag-report-box" class="p-3 rounded-xl border text-xs leading-relaxed transition-all">
         <div class="flex items-center space-x-2 font-bold mb-1">
           <span id="diag-icon">🔍</span>
@@ -767,24 +743,37 @@
   <script>
     const DEFAULT_SHEET_ID = '1-IhxHvLO_PcEVPei-1zF1w6WUDhFNsYAFF-agvidZbc';
     
-    // 全館活動設定狀態（預設停用，並會由試算表「活動設定」分頁動態覆蓋與時間判斷）
-    let globalEventConfig = {
-      enabled: false,
-      title: '檔期滿額折抵活動',
-      threshold1: 1000,
-      discount1: 100,
-      threshold2: 2000,
-      discount2: 300,
-      endTime: '2026/11/15 23:59'
+    // 全站參數設定（預設保底值，載入時會由試算表「活動設定」分頁動態覆蓋）
+    let storeConfig = {
+      baseShipping: 80,
+      beanFreeShipLbs: 1,
+      beanDiscountLbs: 2,
+      beanDiscountAmount: 200,
+      dripTier1Units: 2,
+      dripTier1Rate: 0.9,
+      dripTier2Units: 4,
+      dripTier2Rate: 0.8,
+      icedripFreeShipBottles: 7,
+      // 限時全館滿額活動
+      eventEnabled: false,
+      eventTitle: '限時滿額折抵活動',
+      eventThreshold1: 1000,
+      eventDiscount1: 100,
+      eventThreshold2: 2000,
+      eventDiscount2: 300,
+      eventStackableWithStandard: true,
+      eventEndTime: ''
     };
+
+    // 限時限定品項優惠清單（由試算表「限時限定品項優惠」分頁動態載入）
+    let itemPromoRules = [];
 
     // 判斷台灣時間 (UTC+8) 是否尚未超過截止時間
     function isBeforeDeadline(deadlineStr) {
-      if (!deadlineStr) return true; // 若無設定結束時間，代表未過期
+      if (!deadlineStr) return true;
       const clean = String(deadlineStr).trim();
       if (!clean) return true;
 
-      // 支援 YYYY/MM/DD HH:mm 或 YYYY-MM-DD HH:mm 或 YYYY/MM/DD
       const m = clean.match(/^(\d{4})[\/\-](\d{1,2})[\/\-](\d{1,2})(?:\s+(\d{1,2}):(\d{1,2})(?::(\d{1,2}))?)?$/);
       if (!m) return true;
 
@@ -803,8 +792,14 @@
     }
 
     function isGlobalEventCurrentlyActive() {
-      if (!globalEventConfig.enabled) return false;
-      return isBeforeDeadline(globalEventConfig.endTime);
+      if (!storeConfig.eventEnabled) return false;
+      return isBeforeDeadline(storeConfig.eventEndTime);
+    }
+
+    function formatDiscountRateLabel(rate) {
+      if (rate >= 1 || rate <= 0) return '';
+      const val = Math.round(rate * 100);
+      return (val % 10 === 0) ? `${val / 10} 折` : `${val} 折`;
     }
 
     function sanitizeText(str) {
@@ -964,6 +959,13 @@
       return parseInt(clean, 10) || 0;
     }
 
+    function parseFloatSafe(val, fallback) {
+      if (typeof val === 'number') return val;
+      if (!val) return fallback;
+      const n = parseFloat(String(val).replace(/[^0-9.]/g, ''));
+      return isNaN(n) ? fallback : n;
+    }
+
     function fetchGVizJSONP(sheetId, tabName = '', timeoutMs = 8000) {
       return new Promise((resolve, reject) => {
         const cbName = 'gviz_jsonp_' + Date.now() + '_' + Math.floor(Math.random() * 100000);
@@ -1006,6 +1008,7 @@
       });
     }
 
+    // 解析「活動設定」工作表的所有參數
     function transformEventConfigRows(rows) {
       rows.forEach(row => {
         if (!row || !row.c) return;
@@ -1013,44 +1016,186 @@
         const val = sanitizeText(getCleanCellString(row.c[1]));
         if (!key || key === '參數名稱') return;
 
-        if (key === '活動狀態') {
-          globalEventConfig.enabled = (val === '啟用' || val.toLowerCase() === 'true' || val === '開啟');
-        } else if (key === '活動標題') {
-          if (val) globalEventConfig.title = val;
-        } else if (key === '滿額門檻1') {
-          const n = parseNumericPrice(val);
-          if (n > 0) globalEventConfig.threshold1 = n;
-        } else if (key === '折扣金額1') {
-          const n = parseNumericPrice(val);
-          if (n > 0) globalEventConfig.discount1 = n;
-        } else if (key === '滿額門檻2') {
-          const n = parseNumericPrice(val);
-          if (n > 0) globalEventConfig.threshold2 = n;
-        } else if (key === '折扣金額2') {
-          const n = parseNumericPrice(val);
-          if (n > 0) globalEventConfig.discount2 = n;
-        } else if (key === '結束時間') {
-          globalEventConfig.endTime = val;
+        if (key === '基本運費') {
+          storeConfig.baseShipping = parseFloatSafe(val, 80);
+        } else if (key === '咖啡豆免運門檻(磅)') {
+          storeConfig.beanFreeShipLbs = parseFloatSafe(val, 1);
+        } else if (key === '咖啡豆滿額門檻(磅)') {
+          storeConfig.beanDiscountLbs = parseFloatSafe(val, 2);
+        } else if (key === '咖啡豆滿額折抵(元)') {
+          storeConfig.beanDiscountAmount = parseFloatSafe(val, 200);
+        } else if (key === '掛耳第一階門檻(份)') {
+          storeConfig.dripTier1Units = parseFloatSafe(val, 2);
+        } else if (key === '掛耳第一階折數') {
+          storeConfig.dripTier1Rate = parseFloatSafe(val, 0.9);
+        } else if (key === '掛耳第二階門檻(份)') {
+          storeConfig.dripTier2Units = parseFloatSafe(val, 4);
+        } else if (key === '掛耳第二階折數') {
+          storeConfig.dripTier2Rate = parseFloatSafe(val, 0.8);
+        } else if (key === '冰滴免運門檻(瓶)') {
+          storeConfig.icedripFreeShipBottles = parseFloatSafe(val, 7);
+        } else if (key === '限時滿額活動狀態' || key === '活動狀態') {
+          storeConfig.eventEnabled = (val === '啟用' || val.toLowerCase() === 'true' || val === '開啟');
+        } else if (key === '限時滿額活動標題' || key === '活動標題') {
+          if (val) storeConfig.eventTitle = val;
+        } else if (key === '限時滿額門檻1' || key === '滿額門檻1') {
+          storeConfig.eventThreshold1 = parseFloatSafe(val, 1000);
+        } else if (key === '限時滿額折扣1' || key === '折扣金額1') {
+          storeConfig.eventDiscount1 = parseFloatSafe(val, 100);
+        } else if (key === '限時滿額門檻2' || key === '滿額門檻2') {
+          storeConfig.eventThreshold2 = parseFloatSafe(val, 2000);
+        } else if (key === '限時滿額折扣2' || key === '折扣金額2') {
+          storeConfig.eventDiscount2 = parseFloatSafe(val, 300);
+        } else if (key === '限時滿額可疊加常態優惠') {
+          storeConfig.eventStackableWithStandard = !(val === '否' || val === '不可疊加' || val.toLowerCase() === 'false');
+        } else if (key === '限時滿額結束時間' || key === '結束時間') {
+          storeConfig.eventEndTime = val;
         }
       });
     }
 
-    function updateGlobalEventBannerUI() {
+    // 解析「限時限定品項優惠」工作表
+    function transformItemPromoRows(rows) {
+      const list = [];
+      rows.forEach((row, idx) => {
+        if (!row || !row.c) return;
+        const c = row.c.map(cell => sanitizeText(getCleanCellString(cell)));
+        const title = c[0] || '';
+        const category = c[1] || '';
+        const itemNamesRaw = c[2] || '';
+        const promoType = c[3] || '';
+        const promoVal = parseFloatSafe(c[4], 0);
+        const stackStandard = !(c[5] === '否' || c[5] === '不可疊加' || c[5].toLowerCase() === 'false');
+        const stackGlobal = !(c[6] === '否' || c[6] === '不可疊加' || c[6].toLowerCase() === 'false');
+        const endTime = c[7] || '';
+        const status = c[8] || '';
+
+        if (!title || title === '活動名稱') return;
+        const isActive = (status === '啟用' || status.toLowerCase() === 'true' || status === '開啟');
+        if (!isActive) return;
+        if (endTime && !isBeforeDeadline(endTime)) return;
+        if (promoVal <= 0) return;
+
+        const keywords = itemNamesRaw
+          .split(/[、,，\/｜|]/)
+          .map(s => s.trim())
+          .filter(Boolean);
+
+        list.push({
+          id: `item-promo-${idx}`,
+          title,
+          category,
+          itemNamesRaw,
+          keywords,
+          promoType,
+          promoVal,
+          stackStandard,
+          stackGlobal,
+          endTime
+        });
+      });
+      itemPromoRules = list;
+    }
+
+    function getMatchedItemPromo(productCategory, productName) {
+      for (const rule of itemPromoRules) {
+        if (rule.category && rule.category !== '全部' && rule.category !== '全品項') {
+          if (!productCategory.includes(rule.category) && !rule.category.includes(productCategory)) {
+            continue;
+          }
+        }
+        if (rule.keywords.length === 0 || rule.keywords.includes('全部') || rule.keywords.includes('全品項')) {
+          return rule;
+        }
+        const matched = rule.keywords.some(kw => productName.includes(kw) || kw.includes(productName));
+        if (matched) return rule;
+      }
+      return null;
+    }
+
+    function updateAllPromoRuleBanners() {
+      const dripRulesEl = document.getElementById('promo-card-drip-rules');
+      if (dripRulesEl) {
+        const lines = [];
+        if (storeConfig.dripTier1Units > 0 && storeConfig.dripTier1Rate < 1) {
+          lines.push(`<li>• 任選滿 <strong class="text-[#B74127] font-bold">${storeConfig.dripTier1Units} 份享 ${formatDiscountRateLabel(storeConfig.dripTier1Rate)}</strong></li>`);
+        }
+        if (storeConfig.dripTier2Units > 0 && storeConfig.dripTier2Rate < 1) {
+          lines.push(`<li>• 任選滿 <strong class="text-[#B74127] font-bold">${storeConfig.dripTier2Units} 份享 ${formatDiscountRateLabel(storeConfig.dripTier2Rate)}</strong></li>`);
+        }
+        dripRulesEl.innerHTML = lines.length > 0 ? lines.join('') : '<li>• 目前依單份售價計算</li>';
+      }
+
+      const beanRulesEl = document.getElementById('promo-card-bean-rules');
+      if (beanRulesEl) {
+        const lines = [];
+        if (storeConfig.beanFreeShipLbs > 0) {
+          const packs = Math.round(storeConfig.beanFreeShipLbs * 2);
+          lines.push(`<li>• 滿 ${storeConfig.beanFreeShipLbs} 磅（${packs}包半磅）即享 <strong class="text-[#06C755] font-bold">免運費</strong></li>`);
+        }
+        if (storeConfig.beanDiscountLbs > 0 && storeConfig.beanDiscountAmount > 0) {
+          const packs = Math.round(storeConfig.beanDiscountLbs * 2);
+          lines.push(`<li>• 滿 ${storeConfig.beanDiscountLbs} 磅（${packs}包半磅）現折 <strong class="text-[#B74127] font-bold">${storeConfig.beanDiscountAmount.toLocaleString()}元 ＋ 免運</strong></li>`);
+        }
+        beanRulesEl.innerHTML = lines.length > 0 ? lines.join('') : '<li>• 目前依單包售價計算</li>';
+      }
+
+      const shipNoteEl = document.getElementById('promo-card-shipping-note');
+      if (shipNoteEl) {
+        shipNoteEl.innerText = storeConfig.beanFreeShipLbs > 0
+          ? `* 基本運費 $${storeConfig.baseShipping}（咖啡豆滿 ${storeConfig.beanFreeShipLbs} 磅自動免運）`
+          : `* 基本運費 $${storeConfig.baseShipping}`;
+      }
+
+      const iceBadge = document.getElementById('icedrip-freeship-badge');
+      if (iceBadge) iceBadge.innerText = `🚚 滿 ${storeConfig.icedripFreeShipBottles} 瓶免運費`;
+      const iceNotice = document.getElementById('icedrip-banner-notice');
+      if (iceNotice) {
+        iceNotice.innerText = `※ 專案特惠：每瓶 200 元｜滿 ${storeConfig.icedripFreeShipBottles} 瓶即享免運費出貨 (常溫配送，取貨後請冷藏保存)！`;
+      }
+
       const banner = document.getElementById('global-event-banner');
       const titleEl = document.getElementById('global-event-title');
+      const stackBadge = document.getElementById('global-event-stack-badge');
       const rulesEl = document.getElementById('global-event-rules');
-      if (!banner || !titleEl || !rulesEl) return;
+      if (banner && titleEl && rulesEl) {
+        if (isGlobalEventCurrentlyActive()) {
+          banner.classList.remove('hidden');
+          const endTag = storeConfig.eventEndTime ? `（至 ${storeConfig.eventEndTime} 止）` : '';
+          titleEl.innerText = `🎉 ${storeConfig.eventTitle}${endTag}`;
+          if (stackBadge) {
+            stackBadge.innerText = storeConfig.eventStackableWithStandard ? '可與常態滿額/多件優惠疊加' : '與常態折抵擇優計算';
+          }
+          const rLines = [];
+          if (storeConfig.eventThreshold1 > 0 && storeConfig.eventDiscount1 > 0) {
+            rLines.push(`<li>• 結帳滿 <strong class="font-bold">${storeConfig.eventThreshold1.toLocaleString()} 元，現折 ${storeConfig.eventDiscount1.toLocaleString()} 元</strong></li>`);
+          }
+          if (storeConfig.eventThreshold2 > 0 && storeConfig.eventDiscount2 > 0) {
+            rLines.push(`<li>• 結帳滿 <strong class="font-bold">${storeConfig.eventThreshold2.toLocaleString()} 元，現折 ${storeConfig.eventDiscount2.toLocaleString()} 元</strong></li>`);
+          }
+          rulesEl.innerHTML = rLines.join('');
+        } else {
+          banner.classList.add('hidden');
+        }
+      }
 
-      if (isGlobalEventCurrentlyActive()) {
-        banner.classList.remove('hidden');
-        titleEl.innerText = `🎉 ${globalEventConfig.title}`;
-        rulesEl.innerHTML = `
-          <li>• 全品項結帳滿 <strong class="font-bold">${globalEventConfig.threshold1.toLocaleString()} 元，現折 ${globalEventConfig.discount1.toLocaleString()} 元</strong></li>
-          <li>• 全品項結帳滿 <strong class="font-bold">${globalEventConfig.threshold2.toLocaleString()} 元，現折 ${globalEventConfig.discount2.toLocaleString()} 元</strong></li>
-          <li class="text-[10px] text-[#9F1239] mt-1">（全品項皆可折抵，補豆趁現在最划算！）</li>
-        `;
-      } else {
-        banner.classList.add('hidden');
+      const itemBanner = document.getElementById('item-promo-banner');
+      const itemRulesEl = document.getElementById('item-promo-rules');
+      if (itemBanner && itemRulesEl) {
+        if (itemPromoRules.length > 0) {
+          itemBanner.classList.remove('hidden');
+          itemRulesEl.innerHTML = itemPromoRules.map(r => {
+            const descVal = (r.promoType === '打折')
+              ? `享 <strong class="text-[#B74127]">${formatDiscountRateLabel(r.promoVal)}</strong>`
+              : `每件現折 <strong class="text-[#B74127]">$${r.promoVal}</strong>`;
+            const targetLabel = r.itemNamesRaw ? `【${r.itemNamesRaw}】` : `【${r.category}】`;
+            const endStr = r.endTime ? `（至 ${r.endTime} 止）` : '';
+            const stackNote = (!r.stackStandard || !r.stackGlobal) ? '（不與其他折扣重複疊加，系統自動擇優）' : '';
+            return `<li>• <strong>${r.title}</strong>：${targetLabel}${descVal}${endStr} <span class="text-[10px] text-[#92400E]">${stackNote}</span></li>`;
+          }).join('');
+        } else {
+          itemBanner.classList.add('hidden');
+        }
       }
     }
 
@@ -1164,11 +1309,10 @@
         const desc = rawCells[3] || '';
         const priceStr = rawCells[4] || '';
         const remark = rawCells[5] || '';
-        const endTime = rawCells[6] || ''; // G 欄：結束時間
+        const endTime = rawCells[6] || '';
 
         if (name === '品項名稱' || name === '品名' || !name) return; 
 
-        // 若有設定結束時間且已過期，直接自動略過下架
         if (!isIce && endTime && !isBeforeDeadline(endTime)) {
           return;
         }
@@ -1184,7 +1328,7 @@
             spec: sanitizeText(spec) || '速必得特選隨行瓶',
             desc: sanitizeText(desc + (remark ? ' ' + remark : '')),
             price: price,
-            notice: '每瓶 200 元・滿 7 瓶即享免運費 (常溫配送，取貨後請冷藏保存)'
+            notice: `每瓶 ${price} 元・滿 ${storeConfig.icedripFreeShipBottles} 瓶即享免運費 (常溫配送，取貨後請冷藏保存)`
           });
         } else {
           let tag = sanitizeText(category) || '新品上架';
@@ -1246,8 +1390,17 @@
           fetchGVizJSONP(sheetId, beanTab),
           fetchGVizJSONP(sheetId, dripTab),
           fetchGVizJSONP(sheetId, icedripTab),
-          fetchGVizJSONP(sheetId, '活動設定')
+          fetchGVizJSONP(sheetId, '活動設定'),
+          fetchGVizJSONP(sheetId, '限時限定品項優惠')
         ]);
+
+        if (results[4].status === 'fulfilled' && results[4].value?.table?.rows) {
+          transformEventConfigRows(results[4].value.table.rows);
+        }
+
+        if (results[5].status === 'fulfilled' && results[5].value?.table?.rows) {
+          transformItemPromoRows(results[5].value.table.rows);
+        }
 
         let loadedPromo = false;
         let loadedBean = false;
@@ -1255,8 +1408,7 @@
         let loadedIce = false;
 
         if (results[0].status === 'fulfilled' && results[0].value?.table?.rows) {
-          const parsed = transformInquiryRows(results[0].value.table.rows, 'promo');
-          currentPromoProducts = parsed;
+          currentPromoProducts = transformInquiryRows(results[0].value.table.rows, 'promo');
           loadedPromo = true;
         }
 
@@ -1275,11 +1427,7 @@
           if (parsed.length > 0) { currentIcedripProducts = parsed; loadedIce = true; }
         }
 
-        if (results[4].status === 'fulfilled' && results[4].value?.table?.rows) {
-          transformEventConfigRows(results[4].value.table.rows);
-        }
-
-        updateGlobalEventBannerUI();
+        updateAllPromoRuleBanners();
 
         const anyLoaded = loadedPromo || loadedBean || loadedDrip || loadedIce;
 
@@ -1290,15 +1438,15 @@
             diagBox.className = 'p-3 rounded-xl border bg-emerald-50 border-emerald-300 text-emerald-900 text-xs leading-relaxed';
             diagIcon.innerText = '✅';
             diagTitle.innerText = '雲端試算表連線成功';
-            diagDetail.innerText = `成功同步四大專區與活動設定！已過期活動會自動隱藏。`;
+            diagDetail.innerText = `成功同步四大專區、活動設定與限時品項優惠！`;
           }
-          if (isManual) showToast('🎉 已成功同步 Google 試算表最新品項！');
+          if (isManual) showToast('🎉 已成功同步 Google 試算表最新品項與優惠規則！');
         } else {
           statusBar.innerText = '⚠️ 已啟用備用清單（可開啟設定檢視）';
           dot.className = 'w-2.5 h-2.5 rounded-full bg-amber-400 flex-shrink-0';
         }
       } catch (err) {
-        updateGlobalEventBannerUI();
+        updateAllPromoRuleBanners();
         statusBar.innerText = '⚠️ 試算表未公開，已切換高品質備用清單';
         dot.className = 'w-2.5 h-2.5 rounded-full bg-amber-400 flex-shrink-0';
       }
@@ -1324,12 +1472,18 @@
         const curQty = cart[item.id] || 0;
         const isNotSour = item.name.includes('(不酸)') || item.desc.includes('不酸');
         const cleanDesc = sanitizeText(item.desc);
+        const itemPromo = getMatchedItemPromo('掛耳包', item.name);
+        const itemPromoBadge = itemPromo
+          ? `<span class="text-[10px] font-black px-2 py-0.5 rounded-full bg-[#E11D48] text-white shadow-sm">🔥 ${itemPromo.title} (${itemPromo.promoType === '打折' ? formatDiscountRateLabel(itemPromo.promoVal) : '折$' + itemPromo.promoVal})</span>`
+          : '';
+
         return `
-          <div class="bg-white p-3 sm:p-3.5 rounded-2xl shadow-sm border border-[#E0D1BF] hover:border-[#C8934A] transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
+          <div class="bg-white p-3 sm:p-3.5 rounded-2xl shadow-sm border ${itemPromo ? 'border-[#E11D48] ring-1 ring-[#E11D48]/30' : 'border-[#E0D1BF]'} hover:border-[#C8934A] transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
             <div class="flex-1">
-              <div class="flex items-center space-x-1.5 flex-wrap">
+              <div class="flex items-center space-x-1.5 flex-wrap gap-y-1">
                 <span class="text-[11px] font-bold px-2 py-0.5 rounded bg-[#EFE6D8] text-[#5C3923]">${item.series}</span>
                 ${isNotSour ? '<span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#5D3A24] text-white">不酸推薦</span>' : ''}
+                ${itemPromoBadge}
                 <h4 class="font-serif font-bold text-base text-[#2B170E]">${item.name}</h4>
                 <span class="text-xs text-gray-400">(${item.packInfo})</span>
               </div>
@@ -1365,11 +1519,16 @@
       const curQty = cart[item.id] || 0;
       const isNewArrival = item.isNew || item.name.includes('拉斯拉哈斯') || (item.name.includes('烏干達') && (item.process.includes('日曬') || item.notes.includes('百香果')));
       const cleanNotes = sanitizeText(item.notes);
+      const itemPromo = getMatchedItemPromo('咖啡豆', item.name);
+      const itemPromoBadge = itemPromo
+        ? `<span class="text-[10px] font-black px-2 py-0.5 rounded-full bg-[#E11D48] text-white shadow-sm">🔥 ${itemPromo.title} (${itemPromo.promoType === '打折' ? formatDiscountRateLabel(itemPromo.promoVal) : '折$' + itemPromo.promoVal})</span>`
+        : '';
 
       return `
-        <div id="bean-card-${item.id}" class="bg-white p-3 sm:p-3.5 rounded-2xl shadow-sm border ${isNewArrival ? 'border-[#0284C7] ring-1 ring-[#0284C7]/30' : (isEvenOnly ? 'border-[#C8934A]/80 bg-[#FFFDF9]' : 'border-[#E0D1BF]')} hover:border-[#C8934A] transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
+        <div id="bean-card-${item.id}" class="bg-white p-3 sm:p-3.5 rounded-2xl shadow-sm border ${itemPromo ? 'border-[#E11D48] ring-1 ring-[#E11D48]/30' : (isNewArrival ? 'border-[#0284C7] ring-1 ring-[#0284C7]/30' : (isEvenOnly ? 'border-[#C8934A]/80 bg-[#FFFDF9]' : 'border-[#E0D1BF]'))} hover:border-[#C8934A] transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
           <div class="flex-1">
             <div class="flex flex-wrap items-center gap-1.5">
+              ${itemPromoBadge}
               ${isNewArrival ? '<span class="text-[10px] font-black px-2 py-0.5 rounded-full bg-[#0284C7] text-white shadow-sm flex items-center space-x-0.5"><span>✨</span><span>新品上架</span></span>' : ''}
               ${isEvenOnly ? '<span class="text-[10px] font-black px-2 py-0.5 rounded-full bg-[#B74127] text-white shadow-sm">★ 一磅裝限定</span>' : ''}
               ${item.sourType ? `<span class="text-[10px] font-bold px-2 py-0.5 rounded-full ${item.sourType === '較酸' ? 'bg-[#8E24AA] text-white' : 'bg-[#E57373] text-white'}">${item.sourType}</span>` : '<span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#5D3A24] text-white">不酸</span>'}
@@ -1563,7 +1722,7 @@
                   <span class="text-xs text-gray-500 font-bold">/ 瓶</span>
                 </div>
                 <span class="text-xs text-[#0284C7] font-bold block mt-0.5">
-                  🚚 滿 7 瓶即享免運費
+                  🚚 滿 ${storeConfig.icedripFreeShipBottles} 瓶即享免運費
                 </span>
               </div>
             </div>
@@ -1602,7 +1761,7 @@
             <div class="pt-2 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 border-t border-[#E0F2FE]">
               <span class="text-xs text-[#0284C7] font-bold flex items-center space-x-1.5">
                 <span>❄️</span>
-                <span>每瓶 200 元・滿 7 瓶即享免運費 (常溫配送，取貨後請冷藏保存)</span>
+                <span>每瓶 ${item.price} 元・滿 ${storeConfig.icedripFreeShipBottles} 瓶即享免運費 (常溫配送，取貨後請冷藏保存)</span>
               </span>
 
               <button 
@@ -1627,6 +1786,9 @@
       const qtyEl = document.getElementById(`qty-${id}`);
       if (qtyEl) qtyEl.innerText = next;
 
+      const selEl = document.getElementById(`select-${id}`);
+      if (selEl) selEl.value = String(next);
+
       saveAllState();
       recalculateTotals();
     }
@@ -1635,6 +1797,54 @@
       cart[id] = parseInt(val, 10) || 0;
       saveAllState();
       recalculateTotals();
+    }
+
+    // 在訂單確認彈窗內直接加減或刪除品項（機制 A）
+    function updateModalItemQty(id, delta) {
+      updateQty(id, delta);
+      const stats = recalculateTotals();
+      if ((stats.dripUnits + stats.beanPacks) === 0) {
+        closeOrderModal();
+        showToast('🗑️ 購物車已清空，請重新選購品項！');
+        return;
+      }
+      refreshOrderModalUI(stats);
+    }
+
+    function removeModalItem(id) {
+      cart[id] = 0;
+      const qtyEl = document.getElementById(`qty-${id}`);
+      if (qtyEl) qtyEl.innerText = 0;
+      const selEl = document.getElementById(`select-${id}`);
+      if (selEl) selEl.value = "0";
+
+      saveAllState();
+      const stats = recalculateTotals();
+      if ((stats.dripUnits + stats.beanPacks) === 0) {
+        closeOrderModal();
+        showToast('🗑️ 購物車已清空，請重新選購品項！');
+        return;
+      }
+      refreshOrderModalUI(stats);
+      showToast('已移除該品項');
+    }
+
+    function continueShoppingFromModal() {
+      closeOrderModal();
+      showToast('已保留您選好的品項，請繼續加點其他商品！');
+    }
+
+    function refreshOrderModalUI(stats) {
+      renderModalSummary(stats);
+      const fullMsg = buildOrderMessageText() || '';
+      const previewEl = document.getElementById('order-text-preview');
+      if (previewEl) previewEl.value = fullMsg;
+
+      const oaUrl = `https://line.me/R/oaMessage/%40sxn5987q/?${encodeURIComponent(fullMsg)}`;
+      const btnOa = document.getElementById('btn-send-oa');
+      if (btnOa) btnOa.href = oaUrl;
+
+      copyTextToClipboard(fullMsg);
     }
 
     function switchCategoryTab(cat) {
@@ -1715,76 +1925,137 @@
     function recalculateTotals() {
       let dripUnits = 0;
       let dripSubtotal = 0;
+      let dripItemPromoDiscount = 0;
+      let dripEligibleForStandard = 0;
+      let dripEligibleForGlobal = 0;
 
       currentDripProducts.forEach(item => {
         const qty = cart[item.id] || 0;
         if (qty > 0) {
+          const lineRaw = item.price * qty;
           dripUnits += qty;
-          dripSubtotal += (item.price * qty);
+          dripSubtotal += lineRaw;
+
+          const matchedRule = getMatchedItemPromo('掛耳包', item.name);
+          if (matchedRule) {
+            let lineDisc = 0;
+            if (matchedRule.promoType === '打折') {
+              lineDisc = Math.round(lineRaw * (1 - matchedRule.promoVal));
+            } else {
+              lineDisc = Math.min(lineRaw, Math.round(matchedRule.promoVal * qty));
+            }
+            dripItemPromoDiscount += lineDisc;
+            if (matchedRule.stackStandard) dripEligibleForStandard += (lineRaw - lineDisc);
+            if (matchedRule.stackGlobal) dripEligibleForGlobal += (lineRaw - lineDisc);
+          } else {
+            dripEligibleForStandard += lineRaw;
+            dripEligibleForGlobal += lineRaw;
+          }
         }
       });
 
-      let dripDiscount = 0;
+      let dripStandardDiscount = 0;
       let dripDiscountText = '';
-      if (dripUnits >= 4) {
-        dripDiscount = Math.round(dripSubtotal * 0.2);
-        dripDiscountText = '滿4份享8折';
-      } else if (dripUnits >= 2) {
-        dripDiscount = Math.round(dripSubtotal * 0.1);
-        dripDiscountText = '滿2份享9折';
+      if (storeConfig.dripTier2Units > 0 && dripUnits >= storeConfig.dripTier2Units && storeConfig.dripTier2Rate < 1) {
+        dripStandardDiscount = Math.round(dripEligibleForStandard * (1 - storeConfig.dripTier2Rate));
+        dripDiscountText = `滿${storeConfig.dripTier2Units}份享${formatDiscountRateLabel(storeConfig.dripTier2Rate)}`;
+      } else if (storeConfig.dripTier1Units > 0 && dripUnits >= storeConfig.dripTier1Units && storeConfig.dripTier1Rate < 1) {
+        dripStandardDiscount = Math.round(dripEligibleForStandard * (1 - storeConfig.dripTier1Rate));
+        dripDiscountText = `滿${storeConfig.dripTier1Units}份享${formatDiscountRateLabel(storeConfig.dripTier1Rate)}`;
       }
 
       let beanPacks = 0;
       let beanSubtotal = 0;
+      let beanItemPromoDiscount = 0;
+      let beanEligibleForStandard = 0;
+      let beanEligibleForGlobal = 0;
 
       currentBeanProducts.forEach(item => {
         const qty = cart[item.id] || 0;
         if (qty > 0) {
+          const lineRaw = item.price * qty;
           beanPacks += qty;
-          beanSubtotal += (item.price * qty);
+          beanSubtotal += lineRaw;
+
+          const matchedRule = getMatchedItemPromo('咖啡豆', item.name);
+          if (matchedRule) {
+            let lineDisc = 0;
+            if (matchedRule.promoType === '打折') {
+              lineDisc = Math.round(lineRaw * (1 - matchedRule.promoVal));
+            } else {
+              lineDisc = Math.min(lineRaw, Math.round(matchedRule.promoVal * qty));
+            }
+            beanItemPromoDiscount += lineDisc;
+            if (matchedRule.stackStandard) beanEligibleForStandard += (lineRaw - lineDisc);
+            if (matchedRule.stackGlobal) beanEligibleForGlobal += (lineRaw - lineDisc);
+          } else {
+            beanEligibleForStandard += lineRaw;
+            beanEligibleForGlobal += lineRaw;
+          }
         }
       });
 
       const beanPounds = beanPacks * 0.5;
-      let beanDiscount = 0;
+      let beanStandardDiscount = 0;
       let beanFreeShip = false;
 
-      if (beanPounds >= 2) {
-        beanDiscount = 200;
+      if (storeConfig.beanDiscountLbs > 0 && beanPounds >= storeConfig.beanDiscountLbs) {
+        beanStandardDiscount = Math.min(beanEligibleForStandard, storeConfig.beanDiscountAmount);
         beanFreeShip = true;
-      } else if (beanPounds >= 1) {
+      } else if (storeConfig.beanFreeShipLbs > 0 && beanPounds >= storeConfig.beanFreeShipLbs) {
         beanFreeShip = true;
       }
 
       const totalItems = dripUnits + beanPacks;
       let shippingFee = 0;
-
       if (totalItems === 0) {
         shippingFee = 0;
-      } else if (beanFreeShip) {
+      } else if (beanFreeShip || storeConfig.beanFreeShipLbs === 0) {
         shippingFee = 0;
       } else {
-        shippingFee = 80;
+        shippingFee = storeConfig.baseShipping;
       }
+
+      const rawTotal = dripSubtotal + beanSubtotal;
+      const itemPromoDiscount = dripItemPromoDiscount + beanItemPromoDiscount;
+      const standardDiscount = dripStandardDiscount + beanStandardDiscount;
 
       const isEventActive = isGlobalEventCurrentlyActive();
       let eventDiscount = 0;
       let eventDiscountText = '';
-      
-      const rawTotal = dripSubtotal + beanSubtotal;
-      let currentTotalAfterItemDiscount = rawTotal - (dripDiscount + beanDiscount);
+      let globalBaseAmount = 0;
 
       if (isEventActive) {
-        if (currentTotalAfterItemDiscount >= globalEventConfig.threshold2) {
-          eventDiscount = globalEventConfig.discount2;
-          eventDiscountText = `滿 $${globalEventConfig.threshold2.toLocaleString()} 折 $${globalEventConfig.discount2.toLocaleString()}`;
-        } else if (currentTotalAfterItemDiscount >= globalEventConfig.threshold1) {
-          eventDiscount = globalEventConfig.discount1;
-          eventDiscountText = `滿 $${globalEventConfig.threshold1.toLocaleString()} 折 $${globalEventConfig.discount1.toLocaleString()}`;
+        if (storeConfig.eventStackableWithStandard) {
+          globalBaseAmount = Math.max(0, (dripEligibleForGlobal + beanEligibleForGlobal) - standardDiscount);
+        } else {
+          globalBaseAmount = Math.max(0, dripEligibleForGlobal + beanEligibleForGlobal);
+        }
+
+        if (storeConfig.eventThreshold2 > 0 && globalBaseAmount >= storeConfig.eventThreshold2) {
+          eventDiscount = storeConfig.eventDiscount2;
+          eventDiscountText = `滿 $${storeConfig.eventThreshold2.toLocaleString()} 折 $${storeConfig.eventDiscount2.toLocaleString()}`;
+        } else if (storeConfig.eventThreshold1 > 0 && globalBaseAmount >= storeConfig.eventThreshold1) {
+          eventDiscount = storeConfig.eventDiscount1;
+          eventDiscountText = `滿 $${storeConfig.eventThreshold1.toLocaleString()} 折 $${storeConfig.eventDiscount1.toLocaleString()}`;
         }
       }
 
-      const totalDiscount = dripDiscount + beanDiscount + eventDiscount;
+      let appliedStandardDiscount = standardDiscount;
+      let appliedEventDiscount = eventDiscount;
+      let nonStackableNote = '';
+
+      if (isEventActive && !storeConfig.eventStackableWithStandard && eventDiscount > 0 && standardDiscount > 0) {
+        if (eventDiscount >= standardDiscount) {
+          appliedStandardDiscount = 0;
+          nonStackableNote = `已自動為您擇優套用【${storeConfig.eventTitle}】`;
+        } else {
+          appliedEventDiscount = 0;
+          nonStackableNote = `已自動為您擇優套用常態多件/滿磅優惠`;
+        }
+      }
+
+      const totalDiscount = itemPromoDiscount + appliedStandardDiscount + appliedEventDiscount;
       const grandTotal = Math.max(0, rawTotal - totalDiscount + shippingFee);
 
       updateBadge('badge-drip-tab', dripUnits);
@@ -1815,76 +2086,83 @@
 
       const hintEl = document.getElementById('dock-promo-hint');
       if (hintEl) {
-        if (eventDiscount > 0) {
-          hintEl.innerHTML = `<span class="text-[#06C755] font-bold">🎉 全館活動：已享 ${eventDiscountText} 優惠！</span>`;
-        } else if (beanPounds >= 2 && dripUnits >= 4) {
-          hintEl.innerHTML = `<span class="text-[#06C755] font-bold">🎉 已享掛耳8折 ＋ 咖啡豆折$200 ＋ 免運費！</span>`;
-        } else if (beanPounds >= 2) {
-          hintEl.innerHTML = `<span class="text-[#06C755] font-bold">🎉 咖啡豆滿 2 磅：已折 $200 ＋ 免運費！</span>`;
-        } else if (beanPounds >= 1) {
-          hintEl.innerHTML = `<span class="text-[#06C755] font-bold">🚚 咖啡豆滿 1 磅：已享免運！再選購 ${(2 - beanPounds)} 磅現折 $200</span>`;
-        } else if (beanPounds > 0) {
-          hintEl.innerHTML = `咖啡豆再選購 ${(1 - beanPounds)} 磅即可享有【免運費】！`;
-        } else if (dripUnits >= 2) {
-          hintEl.innerHTML = `<span class="text-[#FFD59E]">掛耳包已享 ${dripDiscountText}！加購 1 磅咖啡豆即可享免運</span>`;
+        if (appliedEventDiscount > 0) {
+          hintEl.innerHTML = `<span class="text-[#06C755] font-bold">🎉 ${storeConfig.eventTitle}：已享 ${eventDiscountText}！</span>`;
+        } else if (itemPromoDiscount > 0) {
+          hintEl.innerHTML = `<span class="text-[#06C755] font-bold">🏷️ 已套用限定品項優惠，現省 $${itemPromoDiscount.toLocaleString()}！</span>`;
+        } else if (storeConfig.beanDiscountLbs > 0 && beanPounds >= storeConfig.beanDiscountLbs) {
+          hintEl.innerHTML = `<span class="text-[#06C755] font-bold">🎉 咖啡豆滿 ${storeConfig.beanDiscountLbs} 磅：已折 $${storeConfig.beanDiscountAmount} ＋ 免運！</span>`;
+        } else if (storeConfig.beanFreeShipLbs > 0 && beanPounds >= storeConfig.beanFreeShipLbs) {
+          const remainLbs = storeConfig.beanDiscountLbs - beanPounds;
+          hintEl.innerHTML = remainLbs > 0
+            ? `<span class="text-[#06C755] font-bold">🚚 咖啡豆已享免運！再選購 ${remainLbs} 磅現折 $${storeConfig.beanDiscountAmount}</span>`
+            : `<span class="text-[#06C755] font-bold">🚚 咖啡豆滿 ${storeConfig.beanFreeShipLbs} 磅：已享免運費！</span>`;
+        } else if (beanPounds > 0 && storeConfig.beanFreeShipLbs > 0) {
+          hintEl.innerHTML = `咖啡豆再選購 ${(storeConfig.beanFreeShipLbs - beanPounds)} 磅即可享有【免運費】！`;
+        } else if (dripUnits >= storeConfig.dripTier1Units && dripDiscountText) {
+          hintEl.innerHTML = `<span class="text-[#FFD59E]">掛耳包已享 ${dripDiscountText}！加購 ${storeConfig.beanFreeShipLbs} 磅咖啡豆即享免運</span>`;
         } else {
-          hintEl.innerText = '咖啡豆滿 1 磅免運、滿 2 磅現折 $200！掛耳滿 2 份享 9 折';
+          hintEl.innerText = `咖啡豆滿 ${storeConfig.beanFreeShipLbs} 磅免運、滿 ${storeConfig.beanDiscountLbs} 磅折 $${storeConfig.beanDiscountAmount}！掛耳滿 ${storeConfig.dripTier1Units} 份享 ${formatDiscountRateLabel(storeConfig.dripTier1Rate)}`;
         }
       }
 
       return {
         dripUnits,
         dripSubtotal,
-        dripDiscount,
+        dripItemPromoDiscount,
+        dripStandardDiscount: appliedStandardDiscount > 0 ? dripStandardDiscount : 0,
         dripDiscountText,
         beanPacks,
         beanPounds,
         beanSubtotal,
-        beanDiscount,
+        beanItemPromoDiscount,
+        beanStandardDiscount: appliedStandardDiscount > 0 ? beanStandardDiscount : 0,
         beanFreeShip,
-        eventDiscount,     
-        eventDiscountText, 
+        itemPromoDiscount,
+        appliedStandardDiscount,
+        appliedEventDiscount,
+        eventDiscountText,
+        nonStackableNote,
         shippingFee,
         rawTotal,
-        currentTotalAfterItemDiscount,
+        globalBaseAmount,
         totalDiscount,
         grandTotal
       };
     }
 
-    // 結帳前檢查尚未達成的優惠項目
     function getUnmetPromoWarnings(stats) {
       const warnings = [];
 
-      // 1. 咖啡豆門檻檢查
-      if (stats.beanPounds > 0 && stats.beanPounds < 1) {
-        const needPacks = Math.round((1 - stats.beanPounds) * 2);
-        warnings.push(`🫘 <strong>咖啡豆免運優惠</strong>：目前 ${stats.beanPounds} 磅，再加購 <strong>${needPacks} 包半磅（0.5 磅）</strong>即可省下 <strong>$80 運費</strong>！`);
-      } else if (stats.beanPounds >= 1 && stats.beanPounds < 2) {
-        const needLbs = 2 - stats.beanPounds;
+      if (storeConfig.beanFreeShipLbs > 0 && stats.beanPounds > 0 && stats.beanPounds < storeConfig.beanFreeShipLbs) {
+        const needLbs = storeConfig.beanFreeShipLbs - stats.beanPounds;
         const needPacks = Math.round(needLbs * 2);
-        warnings.push(`🫘 <strong>咖啡豆滿 2 磅現折 $200</strong>：目前已享免運，再加購 <strong>${needPacks} 包半磅（${needLbs} 磅）</strong>可直接再折 <strong>$200</strong>！`);
-      } else if (stats.beanPounds === 0 && stats.dripUnits > 0) {
-        warnings.push(`🚚 <strong>免運小撇步</strong>：目前需付 $80 運費，只要加購 <strong>1 磅咖啡豆（2 包半磅）</strong>整筆訂單立即享<strong>免運費</strong>！`);
+        warnings.push(`🫘 <strong>咖啡豆免運優惠</strong>：目前 ${stats.beanPounds} 磅，再加購 <strong>${needPacks} 包半磅（${needLbs} 磅）</strong>即可省下 <strong>$${storeConfig.baseShipping} 運費</strong>！`);
+      } else if (storeConfig.beanDiscountLbs > 0 && stats.beanPounds >= storeConfig.beanFreeShipLbs && stats.beanPounds < storeConfig.beanDiscountLbs) {
+        const needLbs = storeConfig.beanDiscountLbs - stats.beanPounds;
+        const needPacks = Math.round(needLbs * 2);
+        warnings.push(`🫘 <strong>咖啡豆滿 ${storeConfig.beanDiscountLbs} 磅現折 $${storeConfig.beanDiscountAmount}</strong>：目前已享免運，再加購 <strong>${needPacks} 包半磅（${needLbs} 磅）</strong>可直接再折 <strong>$${storeConfig.beanDiscountAmount}</strong>！`);
+      } else if (stats.beanPounds === 0 && stats.dripUnits > 0 && storeConfig.beanFreeShipLbs > 0) {
+        const needPacks = Math.round(storeConfig.beanFreeShipLbs * 2);
+        warnings.push(`🚚 <strong>免運小撇步</strong>：目前需付 $${storeConfig.baseShipping} 運費，只要加購 <strong>${storeConfig.beanFreeShipLbs} 磅咖啡豆（${needPacks} 包半磅）</strong>整筆訂單立即享<strong>免運費</strong>！`);
       }
 
-      // 2. 掛耳包門檻檢查
-      if (stats.dripUnits === 1) {
-        warnings.push(`📦 <strong>掛耳包多件折扣</strong>：目前選購 1 份，再加購 <strong>1 份（任選口味）</strong>整組掛耳包立即享 <strong>9 折優惠</strong>！`);
-      } else if (stats.dripUnits >= 2 && stats.dripUnits < 4) {
-        const needUnits = 4 - stats.dripUnits;
-        warnings.push(`📦 <strong>掛耳包滿 4 份享 8 折</strong>：目前享 9 折，再加購 <strong>${needUnits} 份</strong>即可升級為 <strong>8 折優惠</strong>！`);
+      if (storeConfig.dripTier1Units > 0 && stats.dripUnits > 0 && stats.dripUnits < storeConfig.dripTier1Units && storeConfig.dripTier1Rate < 1) {
+        const needUnits = storeConfig.dripTier1Units - stats.dripUnits;
+        warnings.push(`📦 <strong>掛耳包多件折扣</strong>：目前選購 ${stats.dripUnits} 份，再加購 <strong>${needUnits} 份（任選口味）</strong>整組掛耳包立即享 <strong>${formatDiscountRateLabel(storeConfig.dripTier1Rate)}優惠</strong>！`);
+      } else if (storeConfig.dripTier2Units > 0 && stats.dripUnits >= storeConfig.dripTier1Units && stats.dripUnits < storeConfig.dripTier2Units && storeConfig.dripTier2Rate < 1) {
+        const needUnits = storeConfig.dripTier2Units - stats.dripUnits;
+        warnings.push(`📦 <strong>掛耳包滿 ${storeConfig.dripTier2Units} 份享 ${formatDiscountRateLabel(storeConfig.dripTier2Rate)}</strong>：目前享 ${formatDiscountRateLabel(storeConfig.dripTier1Rate)}，再加購 <strong>${needUnits} 份</strong>即可升級為 <strong>${formatDiscountRateLabel(storeConfig.dripTier2Rate)}優惠</strong>！`);
       }
 
-      // 3. 若有進行中的全館滿額活動，檢查是否差一點達標
       if (isGlobalEventCurrentlyActive()) {
-        const curAmt = stats.currentTotalAfterItemDiscount;
-        if (curAmt > 0 && curAmt < globalEventConfig.threshold1) {
-          const diff = globalEventConfig.threshold1 - curAmt;
-          warnings.push(`🎉 <strong>${globalEventConfig.title}</strong>：再湊 <strong>NT$ ${diff.toLocaleString()}</strong> 即可滿 $${globalEventConfig.threshold1.toLocaleString()} 現折 <strong>$${globalEventConfig.discount1.toLocaleString()}</strong>！`);
-        } else if (curAmt >= globalEventConfig.threshold1 && curAmt < globalEventConfig.threshold2) {
-          const diff = globalEventConfig.threshold2 - curAmt;
-          warnings.push(`🎉 <strong>${globalEventConfig.title}</strong>：再湊 <strong>NT$ ${diff.toLocaleString()}</strong> 即可升級滿 $${globalEventConfig.threshold2.toLocaleString()} 現折 <strong>$${globalEventConfig.discount2.toLocaleString()}</strong>！`);
+        const curAmt = stats.globalBaseAmount;
+        if (storeConfig.eventThreshold1 > 0 && curAmt > 0 && curAmt < storeConfig.eventThreshold1) {
+          const diff = storeConfig.eventThreshold1 - curAmt;
+          warnings.push(`🎉 <strong>${storeConfig.eventTitle}</strong>：再湊 <strong>NT$ ${diff.toLocaleString()}</strong> 即可滿 $${storeConfig.eventThreshold1.toLocaleString()} 現折 <strong>$${storeConfig.eventDiscount1.toLocaleString()}</strong>！`);
+        } else if (storeConfig.eventThreshold2 > 0 && curAmt >= storeConfig.eventThreshold1 && curAmt < storeConfig.eventThreshold2) {
+          const diff = storeConfig.eventThreshold2 - curAmt;
+          warnings.push(`🎉 <strong>${storeConfig.eventTitle}</strong>：再湊 <strong>NT$ ${diff.toLocaleString()}</strong> 即可升級滿 $${storeConfig.eventThreshold2.toLocaleString()} 現折 <strong>$${storeConfig.eventDiscount2.toLocaleString()}</strong>！`);
         }
       }
 
@@ -1988,13 +2266,8 @@
       if (previewEl) previewEl.value = inquiryMsg;
 
       const oaUrl = `https://line.me/R/oaMessage/%40sxn5987q/?${encodeURIComponent(inquiryMsg)}`;
-      const appUrl = `line://oaMessage/%40sxn5987q/?${encodeURIComponent(inquiryMsg)}`;
-
       const btnOa = document.getElementById('btn-send-inquiry-oa');
       if (btnOa) btnOa.href = oaUrl;
-
-      const btnApp = document.getElementById('btn-send-inquiry-app');
-      if (btnApp) btnApp.href = appUrl;
 
       copyTextToClipboard(inquiryMsg);
       document.getElementById('inquiry-service-modal').classList.remove('hidden');
@@ -2010,25 +2283,7 @@
         copyTextToClipboard(text);
       }
       closeInquiryModal();
-      showToast('🚀 洽詢訊息已複製並開啟 LINE！烘豆師將竭誠為您服務。');
-    }
-
-    function handleInquiryAppProtocol(e) {
-      if (activeInquiryItem) {
-        const text = buildInquiryMessageText(activeInquiryItem.item, activeInquiryItem.type);
-        copyTextToClipboard(text);
-      }
-      closeInquiryModal();
-      showToast('⚡ 正在喚醒 LINE App！');
-    }
-
-    function handleInquiryPersonal(e) {
-      if (activeInquiryItem) {
-        const text = buildInquiryMessageText(activeInquiryItem.item, activeInquiryItem.type);
-        copyTextToClipboard(text);
-      }
-      closeInquiryModal();
-      showToast('💬 洽詢內容已複製，已開啟個人 LINE！');
+      showToast('🚀 洽詢訊息已複製並開啟官方 LINE！烘豆師將竭誠為您服務。');
     }
 
     function copyInquiryTextAction() {
@@ -2112,26 +2367,28 @@
       msg += `📦【選購明細】\n`;
 
       if (dripLines.length > 0) {
-        msg += dripLines.join('\n') + `
-`;
-        if (stats.dripDiscount > 0) {
-          msg += `  ↳ 掛耳折扣(${stats.dripDiscountText})：-NT$ ${stats.dripDiscount}\n`;
+        msg += dripLines.join('\n') + `\n`;
+        if (stats.dripStandardDiscount > 0) {
+          msg += `  ↳ 掛耳折扣(${stats.dripDiscountText})：-NT$ ${stats.dripStandardDiscount}\n`;
         }
       }
 
       if (beanLines.length > 0) {
-        msg += beanLines.join('\n') + `
-`;
-        if (stats.beanDiscount > 0) {
-          msg += `  ↳ 咖啡豆滿2磅折扣：-NT$ 200\n`;
+        msg += beanLines.join('\n') + `\n`;
+        if (stats.beanStandardDiscount > 0) {
+          msg += `  ↳ 咖啡豆滿${storeConfig.beanDiscountLbs}磅折扣：-NT$ ${stats.beanStandardDiscount}\n`;
         }
       }
 
       msg += `-------------------------\n`;
       msg += `💵 商品小計：NT$ ${stats.rawTotal}\n`;
+
+      if (stats.itemPromoDiscount > 0) {
+        msg += `🏷️ 限定品項優惠折抵：-NT$ ${stats.itemPromoDiscount}\n`;
+      }
       
-      if (stats.eventDiscount > 0) {
-        msg += `🎉 檔期活動折扣 (${stats.eventDiscountText})：-NT$ ${stats.eventDiscount}\n`;
+      if (stats.appliedEventDiscount > 0) {
+        msg += `🎉 ${storeConfig.eventTitle} (${stats.eventDiscountText})：-NT$ ${stats.appliedEventDiscount}\n`;
       }
       
       if (stats.totalDiscount > 0) {
@@ -2178,22 +2435,7 @@
         return;
       }
 
-      renderModalSummary(stats);
-      
-      const fullMsg = buildOrderMessageText() || '';
-      const previewEl = document.getElementById('order-text-preview');
-      if (previewEl) previewEl.value = fullMsg;
-
-      const oaUrl = `https://line.me/R/oaMessage/%40sxn5987q/?${encodeURIComponent(fullMsg)}`;
-      const appUrl = `line://oaMessage/%40sxn5987q/?${encodeURIComponent(fullMsg)}`;
-
-      const btnOa = document.getElementById('btn-send-oa');
-      if (btnOa) btnOa.href = oaUrl;
-
-      const btnApp = document.getElementById('link-app-direct');
-      if (btnApp) btnApp.href = appUrl;
-
-      copyTextToClipboard(fullMsg);
+      refreshOrderModalUI(stats);
       document.getElementById('order-modal').classList.remove('hidden');
     }
 
@@ -2209,11 +2451,13 @@
         const q = cart[p.id] || 0;
         if (q > 0) {
           items.push({
+            id: p.id,
             type: '掛耳包',
             name: `${p.name} (${p.series})`,
-            info: `${p.packInfo}`,
+            info: `${p.packInfo}・單價 $${p.price}`,
             unitPrice: p.price,
             qty: q,
+            step: 1,
             sum: p.price * q
           });
         }
@@ -2223,39 +2467,84 @@
         const q = cart[b.id] || 0;
         if (q > 0) {
           items.push({
+            id: b.id,
             type: '咖啡豆',
             name: b.name,
-            info: `${b.process} / ${q}包半磅 (${q * 0.5}磅)`,
+            info: `${b.process}・${q * 0.5}磅・單價 $${b.price}`,
             unitPrice: b.price,
             qty: q,
+            step: b.isOnePound ? 2 : 1,
             sum: b.price * q
           });
         }
       });
 
       container.innerHTML = items.map(item => `
-        <div class="bg-white p-2.5 rounded-xl border border-[#E4D7C7] flex justify-between items-center">
-          <div>
-            <div class="flex items-center space-x-1.5">
-              <span class="text-[10px] font-bold px-1.5 py-0.5 rounded ${item.type === '掛耳包' ? 'bg-[#EBDDC8] text-[#472D1C]' : 'bg-[#2B170E] text-white'}">${item.type}</span>
-              <span class="font-bold text-[#2B170E]">${item.name}</span>
+        <div class="bg-white p-2.5 sm:p-3 rounded-xl border border-[#E4D7C7] space-y-2 shadow-sm">
+          <div class="flex justify-between items-start gap-2">
+            <div class="flex-1">
+              <div class="flex items-center space-x-1.5 flex-wrap">
+                <span class="text-[10px] font-bold px-1.5 py-0.5 rounded ${item.type === '掛耳包' ? 'bg-[#EBDDC8] text-[#472D1C]' : 'bg-[#2B170E] text-white'}">${item.type}</span>
+                <span class="font-bold text-[#2B170E]">${item.name}</span>
+              </div>
+              <p class="text-[11px] text-gray-500 mt-0.5">${item.info}</p>
             </div>
-            <p class="text-xs text-gray-500 mt-0.5">${item.info}</p>
+            <div class="text-right flex-shrink-0">
+              <span class="font-bold text-sm text-[#B74127]">NT$ ${item.sum.toLocaleString()}</span>
+            </div>
           </div>
-          <div class="text-right">
-            <span class="font-bold text-[#2B170E]">NT$ ${item.sum}</span>
-            <span class="text-[11px] text-gray-400 block">${item.qty} × $${item.unitPrice}</span>
+
+          <div class="flex items-center justify-between pt-1.5 border-t border-[#F4ECE1]">
+            <button 
+              type="button" 
+              onclick="removeModalItem('${item.id}')" 
+              class="text-[11px] text-red-600 hover:text-red-800 font-bold px-2 py-1 rounded-lg hover:bg-red-50 transition flex items-center space-x-1">
+              <span>🗑️ 刪除此項</span>
+            </button>
+
+            <div class="flex items-center space-x-1.5 bg-[#F6F0E6] p-1 rounded-xl border border-[#D8C7B2]">
+              <button 
+                type="button" 
+                onclick="updateModalItemQty('${item.id}', -${item.step})" 
+                class="w-7 h-7 rounded-lg bg-white text-[#3E2519] font-bold shadow-sm active:scale-95 flex items-center justify-center hover:bg-[#EFE5D5]">
+                -${item.step > 1 ? item.step : ''}
+              </button>
+              <span class="min-w-[3.2rem] text-center font-bold text-xs text-[#2D1A10]">
+                ${item.qty} ${item.type === '掛耳包' ? '份' : '包'}
+              </span>
+              <button 
+                type="button" 
+                onclick="updateModalItemQty('${item.id}', ${item.step})" 
+                class="w-7 h-7 rounded-lg bg-[#2B170E] text-white font-bold shadow-sm active:scale-95 flex items-center justify-center hover:bg-[#4E2F1C]">
+                +${item.step > 1 ? item.step : ''}
+              </button>
+            </div>
           </div>
         </div>
       `).join('');
 
       document.getElementById('modal-subtotal').innerText = stats.rawTotal.toLocaleString();
       const discRow = document.getElementById('modal-discount-row');
+      const discDetail = document.getElementById('modal-discount-detail');
+
       if (stats.totalDiscount > 0) {
         discRow.classList.remove('hidden');
         document.getElementById('modal-discount').innerText = stats.totalDiscount.toLocaleString();
+
+        const detailLines = [];
+        if (stats.itemPromoDiscount > 0) detailLines.push(`• 限定品項優惠：-$${stats.itemPromoDiscount.toLocaleString()}`);
+        if (stats.dripStandardDiscount > 0) detailLines.push(`• 掛耳包${stats.dripDiscountText}：-$${stats.dripStandardDiscount.toLocaleString()}`);
+        if (stats.beanStandardDiscount > 0) detailLines.push(`• 咖啡豆滿${storeConfig.beanDiscountLbs}磅折抵：-$${stats.beanStandardDiscount.toLocaleString()}`);
+        if (stats.appliedEventDiscount > 0) detailLines.push(`• ${storeConfig.eventTitle}：-$${stats.appliedEventDiscount.toLocaleString()}`);
+        if (stats.nonStackableNote) detailLines.push(`※ ${stats.nonStackableNote}`);
+
+        if (discDetail && detailLines.length > 0) {
+          discDetail.classList.remove('hidden');
+          discDetail.innerHTML = detailLines.map(l => `<div>${l}</div>`).join('');
+        }
       } else {
         discRow.classList.add('hidden');
+        if (discDetail) discDetail.classList.add('hidden');
       }
 
       document.getElementById('modal-shipping').innerText = stats.shippingFee;
@@ -2291,23 +2580,7 @@
       copyTextToClipboard(fullMsg);
       clearCartItems(false);
       closeOrderModal();
-      showToast('🚀 明細已備妥並開啟 LINE！購物車品項已為您自動清空。');
-    }
-
-    function handleAppProtocol(e) {
-      const fullMsg = buildOrderMessageText();
-      copyTextToClipboard(fullMsg);
-      clearCartItems(false);
-      closeOrderModal();
-      showToast('⚡ 正在喚醒 LINE App！購物車品項已為您自動清空。');
-    }
-
-    function handlePersonalLine(e) {
-      const fullMsg = buildOrderMessageText();
-      copyTextToClipboard(fullMsg);
-      clearCartItems(false);
-      closeOrderModal();
-      showToast('💬 明細已複製！購物車品項已為您自動清空。');
+      showToast('🚀 明細已備妥並開啟官方 LINE！購物車品項已為您自動清空。');
     }
 
     function copyOrderTextAction() {
