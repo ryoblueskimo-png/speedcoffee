@@ -72,23 +72,57 @@
   <header class="beans-header border-b-4 border-[#C8934A] shadow-md relative overflow-hidden">
     <div class="max-w-2xl mx-auto px-4 pt-5 pb-4">
       
-      <!-- 品牌名片主徽章 -->
-      <div class="bg-white/95 backdrop-blur-md rounded-2xl p-4 sm:p-5 shadow-md border border-[#C8934A]/50 text-center relative">
-        <div class="inline-flex items-center justify-center space-x-2 mb-1.5">
-          <span class="font-serif font-black text-3xl sm:text-4xl text-[#2B170E] tracking-tight italic">Speed</span>
-          <span class="font-serif font-bold text-2xl sm:text-3xl text-[#C8934A]">Coffee</span>
-          <span class="inline-flex items-center space-x-1 pl-1 text-xs">
-            <span class="w-2 h-2 rounded-full bg-[#E57373]" title="完熟咖啡果"></span>
-            <span class="w-2 h-2 rounded-full bg-[#81C784]" title="特選生豆"></span>
-            <span class="w-2 h-2 rounded-full bg-[#8D6E63]" title="中焙"></span>
-            <span class="w-2 h-2 rounded-full bg-[#3E2723]" title="直火深焙"></span>
+      <!-- 品牌名片主徽章（深焙黑金精品名片風格） -->
+      <div class="bg-gradient-to-br from-[#2B170E] via-[#3A2014] to-[#1F1009] rounded-2xl p-5 sm:p-6 shadow-xl border-2 border-[#C8934A] text-center relative overflow-hidden">
+        <!-- 內層鎏金細框 -->
+        <div class="absolute inset-2 border border-[#C8934A]/35 rounded-xl pointer-events-none"></div>
+        <!-- 角落金飾點綴 -->
+        <div class="absolute top-2.5 left-2.5 w-2 h-2 border-t-2 border-l-2 border-[#E5B869] pointer-events-none"></div>
+        <div class="absolute top-2.5 right-2.5 w-2 h-2 border-t-2 border-r-2 border-[#E5B869] pointer-events-none"></div>
+        <div class="absolute bottom-2.5 left-2.5 w-2 h-2 border-b-2 border-l-2 border-[#E5B869] pointer-events-none"></div>
+        <div class="absolute bottom-2.5 right-2.5 w-2 h-2 border-b-2 border-r-2 border-[#E5B869] pointer-events-none"></div>
+        <!-- 背景微光暈 -->
+        <div class="absolute -top-12 -right-12 w-36 h-36 bg-[#C8934A]/15 rounded-full blur-2xl pointer-events-none"></div>
+        <div class="absolute -bottom-12 -left-12 w-36 h-36 bg-[#B74127]/15 rounded-full blur-2xl pointer-events-none"></div>
+
+        <!-- 頂部職人標章 -->
+        <div class="relative z-10 mb-2">
+          <span class="inline-flex items-center space-x-1.5 text-[11px] font-bold tracking-[0.2em] text-[#F5D08A] bg-[#C8934A]/20 border border-[#C8934A]/50 px-3 py-0.5 rounded-full">
+            <span>🔥</span>
+            <span>ARTISAN DIRECT-FIRE ROASTERY</span>
+          </span>
+        </div>
+
+        <!-- 品牌英文主視覺與烘焙度四色豆 -->
+        <div class="relative z-10 inline-flex items-center justify-center space-x-2 mb-1">
+          <span class="font-serif font-black text-4xl sm:text-5xl text-[#FAF2E5] tracking-tight italic drop-shadow">Speed</span>
+          <span class="font-serif font-bold text-3xl sm:text-4xl text-[#E5B869] tracking-tight drop-shadow">Coffee</span>
+          <span class="inline-flex items-center space-x-1.5 pl-1.5">
+            <span class="w-2.5 h-2.5 rounded-full bg-[#E57373] ring-1 ring-white/30" title="完熟咖啡果"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-[#81C784] ring-1 ring-white/30" title="特選生豆"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-[#A1887F] ring-1 ring-white/30" title="中焙"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-[#5D4037] ring-1 ring-white/40" title="直火深焙"></span>
           </span>
         </div>
         
-        <h1 class="text-xl sm:text-2xl font-bold font-serif text-[#2B170E] tracking-widest">
+        <!-- 品牌中文標題 -->
+        <h1 class="relative z-10 text-2xl sm:text-[26px] font-black font-serif text-white tracking-[0.22em] mt-0.5 drop-shadow-sm">
           速必得自家烘焙咖啡
         </h1>
-        <p class="text-xs text-[#8A5B3D] font-medium mt-1">日本皇家富士直火烘焙機・接單新鮮現烘</p>
+
+        <!-- 金色漸層分隔線 -->
+        <div class="relative z-10 flex items-center justify-center my-2.5">
+          <span class="h-[1px] w-12 bg-gradient-to-r from-transparent to-[#C8934A]"></span>
+          <span class="mx-2 text-[#E5B869] text-xs">✦</span>
+          <span class="h-[1px] w-12 bg-gradient-to-l from-transparent to-[#C8934A]"></span>
+        </div>
+
+        <!-- 底部直火特色膠囊標籤 -->
+        <div class="relative z-10 inline-flex flex-wrap items-center justify-center gap-1.5 text-xs font-bold text-[#2B170E] bg-gradient-to-r from-[#E5B869] via-[#F3D192] to-[#E5B869] px-3.5 py-1 rounded-full shadow-md">
+          <span>日本皇家富士直火烘焙機</span>
+          <span>・</span>
+          <span>接單新鮮現烘</span>
+        </div>
       </div>
 
       <!-- 營業與聯絡資訊（淺色系） -->
@@ -146,17 +180,13 @@
 
       </div>
 
-      <!-- 富士直火烘豆機 R-105 展示 -->
+      <!-- 富士直火烘豆機 R-105 展示（已鎖定僅能從後台修改） -->
       <div class="mt-3 bg-white/95 backdrop-blur-md rounded-2xl p-3 shadow-md border border-[#C8934A]/50">
         <div class="flex items-center justify-between border-b border-[#D5C2AA]/40 pb-2 mb-2">
           <div class="flex items-center space-x-1.5">
             <span class="text-sm">🇯🇵</span>
             <span class="font-serif font-bold text-xs sm:text-sm text-[#2B170E]">職人設備：FUJI ROYAL R-105 (5kg 直火型)</span>
           </div>
-          <label class="cursor-pointer bg-[#F4EDE2] hover:bg-[#E9DECD] text-[#5C3923] text-[11px] font-bold px-2 py-0.5 rounded border border-[#C8934A]/40 flex items-center space-x-1">
-            <span>📷 更換照片</span>
-            <input type="file" id="roaster-photo-input" accept="image/*" class="hidden" onchange="handleRoasterPhotoUpload(this)">
-          </label>
         </div>
 
         <div class="flex flex-col sm:flex-row items-center gap-3">
@@ -214,13 +244,11 @@
           </ul>
         </div>
       </div>
-      <!-- 新增全館滿額折扣說明 -->
-      <div class="mt-2 bg-[#FFF1F2] border border-[#FECDD3] p-2 rounded-xl text-xs sm:text-sm">
-        <p class="font-bold text-[#BE123C] mb-1">🎉 檔期活動：即日起 ～ 11/15 止</p>
-        <ul class="space-y-0.5 text-[#881337] text-xs">
-           <li>• 全品項結帳滿 <strong class="font-bold">1,000 元，現折 100 元</strong></li>
-           <li>• 全品項結帳滿 <strong class="font-bold">2,000 元，現折 300 元</strong></li>
-           <li class="text-[10px] text-[#9F1239] mt-1">（全品項皆可折抵，補豆趁現在最划算！）</li>
+
+      <!-- 動態全館滿額折扣公告區塊（自動依活動設定與截止時間顯示或隱藏） -->
+      <div id="global-event-banner" class="hidden mt-2 bg-[#FFF1F2] border border-[#FECDD3] p-2 rounded-xl text-xs sm:text-sm">
+        <p id="global-event-title" class="font-bold text-[#BE123C] mb-1">🎉 檔期活動</p>
+        <ul id="global-event-rules" class="space-y-0.5 text-[#881337] text-xs">
         </ul>
       </div>
 
@@ -234,7 +262,7 @@
     <div class="sticky top-2 z-20 mb-4 bg-white/95 backdrop-blur-md p-1.5 rounded-2xl shadow-md border border-[#D5C2AA]">
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-1.5">
         <button 
-          type="button"
+          type="button" 
           id="tab-btn-promo" 
           onclick="switchCategoryTab('promo')" 
           class="py-2.5 px-2 rounded-xl text-center font-bold text-xs sm:text-sm transition-all flex items-center justify-center space-x-1 bg-[#2B170E] text-[#F3EADB] shadow-sm">
@@ -243,7 +271,7 @@
         </button>
 
         <button 
-          type="button"
+          type="button" 
           id="tab-btn-bean" 
           onclick="switchCategoryTab('bean')" 
           class="py-2.5 px-2 rounded-xl text-center font-bold text-xs sm:text-sm transition-all flex items-center justify-center space-x-1 text-[#4E2F1C] hover:bg-[#F3EADB]">
@@ -252,7 +280,7 @@
         </button>
 
         <button 
-          type="button"
+          type="button" 
           id="tab-btn-drip" 
           onclick="switchCategoryTab('drip')" 
           class="py-2.5 px-2 rounded-xl text-center font-bold text-xs sm:text-sm transition-all flex items-center justify-center space-x-1 text-[#4E2F1C] hover:bg-[#F3EADB]">
@@ -261,7 +289,7 @@
         </button>
 
         <button 
-          type="button"
+          type="button" 
           id="tab-btn-icedrip" 
           onclick="switchCategoryTab('icedrip')" 
           class="py-2.5 px-2 rounded-xl text-center font-bold text-xs sm:text-sm transition-all flex items-center justify-center space-x-1 text-[#4E2F1C] hover:bg-[#F3EADB]">
@@ -411,13 +439,13 @@
       
       <div class="text-[11px] sm:text-xs text-[#ECC790] mb-1 flex items-center justify-between font-medium">
         <span id="dock-promo-hint">咖啡豆滿 1 磅免運、滿 2 磅現折 $200！</span>
-        <button type="button" onclick="openOrderModal()" class="text-white underline hover:text-[#C8934A]">
+        <button type="button" onclick="handleCheckoutButtonClick()" class="text-white underline hover:text-[#C8934A]">
           明細 (<span id="dock-items-count">0</span>件)
         </button>
       </div>
 
       <div class="flex items-center justify-between gap-3">
-        <div class="flex-1 cursor-pointer" onclick="openOrderModal()">
+        <div class="flex-1 cursor-pointer" onclick="handleCheckoutButtonClick()">
           <div class="flex items-baseline space-x-1.5">
             <span class="text-xs text-gray-300">含運試算:</span>
             <span class="text-xl sm:text-2xl font-black text-[#FFD59E] font-serif">NT$ <span id="dock-grand-total">0</span></span>
@@ -431,8 +459,8 @@
 
         <div>
           <button 
-            type="button"
-            onclick="openOrderModal()" 
+            type="button" 
+            onclick="handleCheckoutButtonClick()" 
             class="bg-[#06C755] hover:bg-[#05b34c] active:scale-95 text-white font-bold text-sm sm:text-base px-5 py-2.5 rounded-xl shadow-md transition-all flex items-center space-x-1.5 cursor-pointer">
             <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
               <path d="M19.365 9.863c.349.001.62.285.62.631 0 .346-.271.63-.62.63h-1.928v1.272h1.928c.349 0 .62.284.62.63 0 .348-.271.632-.62.632h-2.558a.63.63 0 0 1-.63-.632V7.728a.63.63 0 0 1 .63-.63h2.558c.349 0 .62.284.62.63 0 .347-.271.631-.62.631h-1.928v1.504h1.928zM12 2C6.477 2 2 6.075 2 11.103c0 3.195 1.777 6.009 4.492 7.55-.176.602-.705 2.378-.813 2.766-.134.482.176.474.37.346.153-.102 2.457-1.638 3.447-2.302.822.126 1.664.192 2.504.192 5.523 0 10-4.075 10-9.103C22 6.075 17.523 2 12 2zm3.326 10.395a.63.63 0 0 1-.63.632.632.632 0 0 1-.63-.632V7.728a.63.63 0 0 1 .63-.63h2.558c.349 0 .62.284.62.63 0 .347-.271.631-.62.631h-1.928v1.504h1.928zM12 2C6.477 2 2 6.075 2 11.103c0 3.195 1.777 6.009 4.492 7.55-.176.602-.705 2.378-.813 2.766-.134.482.176.474.37.346.153-.102 2.457-1.638 3.447-2.302.822.126 1.664.192 2.504.192 5.523 0 10-4.075 10-9.103C22 6.075 17.523 2 12 2zm3.326 10.395a.63.63 0 0 1-.63.632.632.632 0 0 1-.63-.632V7.728a.63.63 0 0 1 .63-.63h2.558c.349 0 .62.284.62.63 0 .347-.271.631-.62.631h-1.928v1.504h1.928z"/>
@@ -443,6 +471,45 @@
       </div>
     </div>
   </footer>
+
+  <!-- 結帳前「未達成優惠提醒」警告彈窗 -->
+  <div id="promo-warning-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="bg-[#FAF7F2] w-full max-w-md rounded-2xl shadow-2xl overflow-hidden border-2 border-[#C8934A]">
+      <div class="bg-[#B74127] text-white px-4 py-3.5 flex items-center justify-between">
+        <h3 class="font-serif font-bold text-base sm:text-lg flex items-center space-x-2">
+          <span>💡 烘豆師貼心省錢提醒</span>
+        </h3>
+        <button type="button" onclick="closePromoWarningModal()" class="text-white/80 hover:text-white text-xl font-bold leading-none">✕</button>
+      </div>
+
+      <div class="p-4 space-y-3 text-xs sm:text-sm">
+        <p class="font-bold text-[#2B170E]">
+          您目前的選購組合只要再差一點點，就能享有更多優惠喔：
+        </p>
+        <div id="promo-warning-list" class="space-y-2 bg-[#FFF9ED] p-3 rounded-xl border border-[#E8D4BA] text-[#5C3923] leading-relaxed">
+          <!-- 動態插入未達成優惠項目 -->
+        </div>
+        <p class="text-[11px] text-[#8A5B3D]">
+          ※ 您可以選擇返回繼續挑選湊滿優惠，或直接進入結帳明細送出訂單。
+        </p>
+      </div>
+
+      <div class="p-3 bg-white border-t border-[#E3D6C5] grid grid-cols-2 gap-2.5">
+        <button 
+          type="button" 
+          onclick="closePromoWarningModal()" 
+          class="py-3 px-3 rounded-xl bg-[#2B170E] hover:bg-[#4E2F1C] active:scale-95 text-[#F9F4EB] font-bold text-xs sm:text-sm transition shadow">
+          🔙 返回繼續湊單
+        </button>
+        <button 
+          type="button" 
+          onclick="proceedToOrderModal()" 
+          class="py-3 px-3 rounded-xl bg-[#EFE6D8] hover:bg-[#E4D5C2] active:scale-95 text-[#2B170E] font-bold text-xs sm:text-sm border border-[#C8934A] transition">
+          ✅ 不湊了，直接結帳
+        </button>
+      </div>
+    </div>
+  </div>
 
   <!-- 專人服務訂購確認彈窗 -->
   <div id="inquiry-service-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-end sm:items-center justify-center p-0 sm:p-4">
@@ -650,7 +717,7 @@
       <div class="space-y-3 text-xs sm:text-sm">
         <div>
           <label class="block font-bold text-[#4E2F1C] mb-1">Google 試算表網址 或 ID</label>
-          <input type="text" id="input-sheet-url" value="https://docs.google.com/spreadsheets/d/1M3osMyzFN8Zoo1ukaDt7ZUA2QqXhjDyndxw_rHoSOYE/edit?usp=sharing" placeholder="貼上 Google 試算表連結" class="w-full px-3 py-2 bg-white border border-[#D4C3AC] rounded-xl text-xs font-mono focus:ring-2 focus:ring-[#C8934A] focus:outline-none">
+          <input type="text" id="input-sheet-url" value="https://docs.google.com/spreadsheets/d/1-IhxHvLO_PcEVPei-1zF1w6WUDhFNsYAFF-agvidZbc/edit" placeholder="貼上 Google 試算表連結" class="w-full px-3 py-2 bg-white border border-[#D4C3AC] rounded-xl text-xs font-mono focus:ring-2 focus:ring-[#C8934A] focus:outline-none">
         </div>
         <div class="grid grid-cols-2 gap-2">
           <div>
@@ -698,8 +765,48 @@
   </div>
 
   <script>
-     const DEFAULT_SHEET_ID = '1-IhxHvLO_PcEVPei-1zF1w6WUDhFNsYAFF-agvidZbc';
+    const DEFAULT_SHEET_ID = '1-IhxHvLO_PcEVPei-1zF1w6WUDhFNsYAFF-agvidZbc';
     
+    // 全館活動設定狀態（預設停用，並會由試算表「活動設定」分頁動態覆蓋與時間判斷）
+    let globalEventConfig = {
+      enabled: false,
+      title: '檔期滿額折抵活動',
+      threshold1: 1000,
+      discount1: 100,
+      threshold2: 2000,
+      discount2: 300,
+      endTime: '2026/11/15 23:59'
+    };
+
+    // 判斷台灣時間 (UTC+8) 是否尚未超過截止時間
+    function isBeforeDeadline(deadlineStr) {
+      if (!deadlineStr) return true; // 若無設定結束時間，代表未過期
+      const clean = String(deadlineStr).trim();
+      if (!clean) return true;
+
+      // 支援 YYYY/MM/DD HH:mm 或 YYYY-MM-DD HH:mm 或 YYYY/MM/DD
+      const m = clean.match(/^(\d{4})[\/\-](\d{1,2})[\/\-](\d{1,2})(?:\s+(\d{1,2}):(\d{1,2})(?::(\d{1,2}))?)?$/);
+      if (!m) return true;
+
+      const year = parseInt(m[1], 10);
+      const month = String(parseInt(m[2], 10)).padStart(2, '0');
+      const day = String(parseInt(m[3], 10)).padStart(2, '0');
+      const hour = m[4] !== undefined ? String(parseInt(m[4], 10)).padStart(2, '0') : '23';
+      const minute = m[5] !== undefined ? String(parseInt(m[5], 10)).padStart(2, '0') : '59';
+      const second = m[6] !== undefined ? String(parseInt(m[6], 10)).padStart(2, '0') : '59';
+
+      const isoStr = `${year}-${month}-${day}T${hour}:${minute}:${second}+08:00`;
+      const deadlineTs = Date.parse(isoStr);
+      if (isNaN(deadlineTs)) return true;
+
+      return Date.now() <= deadlineTs;
+    }
+
+    function isGlobalEventCurrentlyActive() {
+      if (!globalEventConfig.enabled) return false;
+      return isBeforeDeadline(globalEventConfig.endTime);
+    }
+
     function sanitizeText(str) {
       if (!str) return '';
       return String(str)
@@ -710,7 +817,12 @@
     }
 
     function getCleanCellString(cell) {
-      if (!cell || cell.v === undefined || cell.v === null) return '';
+      if (!cell) return '';
+      if (cell.f !== undefined && cell.f !== null && String(cell.f).trim() !== '') {
+        const sf = String(cell.f).trim();
+        if (sf.toLowerCase() !== 'null' && sf.toLowerCase() !== 'undefined') return sf;
+      }
+      if (cell.v === undefined || cell.v === null) return '';
       const s = String(cell.v).trim();
       if (s.toLowerCase() === 'null' || s.toLowerCase() === 'undefined') return '';
       return s;
@@ -806,17 +918,6 @@
 
     const DEFAULT_PROMO_PRODUCTS = [
       {
-        id: 'promo-super-trio',
-        name: '濃情摩卡、薇薇特南果、祕魯（三磅超值組）',
-        tag: '超值特惠',
-        spec: '經典不酸三本柱：濃情摩卡 + 薇薇特南果 + 祕魯 各 1 磅（共 3 磅）',
-        desc: '精選三款超人氣不酸經典！焦糖堅果、核果可可香醇甘甜。三磅專案一口價 NT$ 1,500 即享免運費出貨，接單新鮮現烘，請另外洽詢訂購！',
-        price: 1500,
-        notice: '三磅一口價 NT$ 1,500 免運費・由專人為您安排現烘出貨',
-        isSuperPromo: true,
-        type: 'inquiry'
-      },
-      {
         id: 'promo-uganda',
         name: '烏干達 Sipi Falls 處理廠',
         tag: '新品上架',
@@ -825,7 +926,8 @@
         price: 600,
         notice: '新品上架現貨供應・請移步「咖啡豆」選單選購',
         isRedirectBean: true,
-        type: 'goto-bean'
+        type: 'goto-bean',
+        endTime: ''
       },
       {
         id: 'promo-laslajas',
@@ -836,7 +938,8 @@
         price: 650,
         notice: '新品上架現貨供應・請移步「咖啡豆」選單選購',
         isRedirectBean: true,
-        type: 'goto-bean'
+        type: 'goto-bean',
+        endTime: ''
       }
     ];
 
@@ -847,15 +950,6 @@
 
     let cart = {};
     let activeInquiryItem = null;
-
-    function parseDirectImageUrl(url) {
-      if (!url) return '';
-      const driveMatch = url.match(/\/d\/([a-zA-Z0-9-_]+)/) || url.match(/id=([a-zA-Z0-9-_]+)/);
-      if (driveMatch && driveMatch[1]) {
-        return `https://lh3.googleusercontent.com/d/${driveMatch[1]}`;
-      }
-      return url;
-    }
 
     function extractSpreadsheetId(urlOrId) {
       if (!urlOrId) return '';
@@ -912,6 +1006,54 @@
       });
     }
 
+    function transformEventConfigRows(rows) {
+      rows.forEach(row => {
+        if (!row || !row.c) return;
+        const key = sanitizeText(getCleanCellString(row.c[0]));
+        const val = sanitizeText(getCleanCellString(row.c[1]));
+        if (!key || key === '參數名稱') return;
+
+        if (key === '活動狀態') {
+          globalEventConfig.enabled = (val === '啟用' || val.toLowerCase() === 'true' || val === '開啟');
+        } else if (key === '活動標題') {
+          if (val) globalEventConfig.title = val;
+        } else if (key === '滿額門檻1') {
+          const n = parseNumericPrice(val);
+          if (n > 0) globalEventConfig.threshold1 = n;
+        } else if (key === '折扣金額1') {
+          const n = parseNumericPrice(val);
+          if (n > 0) globalEventConfig.discount1 = n;
+        } else if (key === '滿額門檻2') {
+          const n = parseNumericPrice(val);
+          if (n > 0) globalEventConfig.threshold2 = n;
+        } else if (key === '折扣金額2') {
+          const n = parseNumericPrice(val);
+          if (n > 0) globalEventConfig.discount2 = n;
+        } else if (key === '結束時間') {
+          globalEventConfig.endTime = val;
+        }
+      });
+    }
+
+    function updateGlobalEventBannerUI() {
+      const banner = document.getElementById('global-event-banner');
+      const titleEl = document.getElementById('global-event-title');
+      const rulesEl = document.getElementById('global-event-rules');
+      if (!banner || !titleEl || !rulesEl) return;
+
+      if (isGlobalEventCurrentlyActive()) {
+        banner.classList.remove('hidden');
+        titleEl.innerText = `🎉 ${globalEventConfig.title}`;
+        rulesEl.innerHTML = `
+          <li>• 全品項結帳滿 <strong class="font-bold">${globalEventConfig.threshold1.toLocaleString()} 元，現折 ${globalEventConfig.discount1.toLocaleString()} 元</strong></li>
+          <li>• 全品項結帳滿 <strong class="font-bold">${globalEventConfig.threshold2.toLocaleString()} 元，現折 ${globalEventConfig.discount2.toLocaleString()} 元</strong></li>
+          <li class="text-[10px] text-[#9F1239] mt-1">（全品項皆可折抵，補豆趁現在最划算！）</li>
+        `;
+      } else {
+        banner.classList.add('hidden');
+      }
+    }
+
     function transformDripRows(rows) {
       const list = [];
       rows.forEach((row, idx) => {
@@ -925,7 +1067,7 @@
         const packInfo = rawCells[2] || '25包/份';
         const desc = rawCells[3] || '手沖掛耳包';
         const priceStr = rawCells[4] || '';
-        const remark = rawCells[5] || ''; // 讀取掛耳包備註
+        const remark = rawCells[5] || '';
         
         if (name === '品項名稱' || name === '品名' || !name) return; 
 
@@ -967,7 +1109,7 @@
         const process = rawCells[2] || '莊園特選';
         const notes = rawCells[3] || '純淨甜感，回甘深遠';
         const priceStr = rawCells[4] || '';
-        const remark = rawCells[5] || ''; // 讀取咖啡豆備註
+        const remark = rawCells[5] || '';
 
         if (name === '品項名稱' || name === '第一行(國家或莊園)' || !name) return; 
 
@@ -987,8 +1129,6 @@
 
         const isOnePound = remark.includes('一磅');
         const isNewArrival = name.includes('拉斯拉哈斯') || (name.includes('烏干達') && process.includes('日曬'));
-        
-        // 判斷備註是否包含「缺貨」字樣
         const isOutOfStock = remark.includes('缺貨') || remark.includes('完售') || remark.includes('售完');
 
         list.push({
@@ -1001,8 +1141,8 @@
           price: price,
           isOnePound,
           isNew: isNewArrival,
-          isOutOfStock: isOutOfStock, // 新增缺貨屬性
-          stockMsg: isOutOfStock ? sanitizeText(remark) : '' // 抓取缺貨公告文字
+          isOutOfStock: isOutOfStock,
+          stockMsg: isOutOfStock ? sanitizeText(remark) : ''
         });
       });
       return list;
@@ -1024,8 +1164,14 @@
         const desc = rawCells[3] || '';
         const priceStr = rawCells[4] || '';
         const remark = rawCells[5] || '';
+        const endTime = rawCells[6] || ''; // G 欄：結束時間
 
         if (name === '品項名稱' || name === '品名' || !name) return; 
+
+        // 若有設定結束時間且已過期，直接自動略過下架
+        if (!isIce && endTime && !isBeforeDeadline(endTime)) {
+          return;
+        }
 
         let price = parseNumericPrice(priceStr);
         
@@ -1042,7 +1188,7 @@
           });
         } else {
           let tag = sanitizeText(category) || '新品上架';
-          let isSuperPromo = category.includes('超值') || name.includes('三磅') || price === 1500;
+          let isSuperPromo = category.includes('超值') || category.includes('特惠') || name.includes('三磅') || price === 1500;
           let isRedirectBean = !isSuperPromo; 
 
           list.push({
@@ -1054,9 +1200,10 @@
             price: price || 600,
             notice: isSuperPromo 
               ? '一口價免運費・由專人為您安排現烘出貨' 
-              : '新品上架現貨供應・請移步「咖啡豆」選單選購',
+              : (remark ? sanitizeText(remark) : '新品上架現貨供應・請移步「咖啡豆」選單選購'),
             isRedirectBean: isRedirectBean,
-            isSuperPromo: isSuperPromo
+            isSuperPromo: isSuperPromo,
+            endTime: sanitizeText(endTime)
           });
         }
       });
@@ -1098,7 +1245,8 @@
           fetchGVizJSONP(sheetId, promoTab),
           fetchGVizJSONP(sheetId, beanTab),
           fetchGVizJSONP(sheetId, dripTab),
-          fetchGVizJSONP(sheetId, icedripTab)
+          fetchGVizJSONP(sheetId, icedripTab),
+          fetchGVizJSONP(sheetId, '活動設定')
         ]);
 
         let loadedPromo = false;
@@ -1108,7 +1256,8 @@
 
         if (results[0].status === 'fulfilled' && results[0].value?.table?.rows) {
           const parsed = transformInquiryRows(results[0].value.table.rows, 'promo');
-          if (parsed.length > 0) { currentPromoProducts = parsed; loadedPromo = true; }
+          currentPromoProducts = parsed;
+          loadedPromo = true;
         }
 
         if (results[1].status === 'fulfilled' && results[1].value?.table?.rows) {
@@ -1126,6 +1275,12 @@
           if (parsed.length > 0) { currentIcedripProducts = parsed; loadedIce = true; }
         }
 
+        if (results[4].status === 'fulfilled' && results[4].value?.table?.rows) {
+          transformEventConfigRows(results[4].value.table.rows);
+        }
+
+        updateGlobalEventBannerUI();
+
         const anyLoaded = loadedPromo || loadedBean || loadedDrip || loadedIce;
 
         if (anyLoaded) {
@@ -1135,28 +1290,17 @@
             diagBox.className = 'p-3 rounded-xl border bg-emerald-50 border-emerald-300 text-emerald-900 text-xs leading-relaxed';
             diagIcon.innerText = '✅';
             diagTitle.innerText = '雲端試算表連線成功';
-            diagDetail.innerText = `成功同步四大專區！品項價格與特惠方案已更新為雲端最新資料！`;
+            diagDetail.innerText = `成功同步四大專區與活動設定！已過期活動會自動隱藏。`;
           }
           if (isManual) showToast('🎉 已成功同步 Google 試算表最新品項！');
         } else {
           statusBar.innerText = '⚠️ 已啟用備用清單（可開啟設定檢視）';
           dot.className = 'w-2.5 h-2.5 rounded-full bg-amber-400 flex-shrink-0';
-          if (diagBox) {
-            diagBox.className = 'p-3 rounded-xl border bg-amber-50 border-amber-300 text-amber-900 text-xs leading-relaxed';
-            diagIcon.innerText = '⚠️';
-            diagTitle.innerText = '使用內建高品質校準清單';
-            diagDetail.innerText = '目前已安全載入 3 檔特惠新品、25 款咖啡豆、10 款掛耳包與冰滴咖啡。若需連線個人表單，請確認分頁共用權限為「知道連結的任何人」。';
-          }
         }
       } catch (err) {
+        updateGlobalEventBannerUI();
         statusBar.innerText = '⚠️ 試算表未公開，已切換高品質備用清單';
         dot.className = 'w-2.5 h-2.5 rounded-full bg-amber-400 flex-shrink-0';
-        if (diagBox) {
-          diagBox.className = 'p-3 rounded-xl border bg-red-50 border-red-300 text-red-900 text-xs leading-relaxed';
-          diagIcon.innerText = '🔒';
-          diagTitle.innerText = '權限提醒：試算表尚未設為公開分享';
-          diagDetail.innerText = 'Google 拒絕連線。請至試算表右上角點選【共用】，將一般存取權改為「知道連結的任何人」（檢視者）。';
-        }
       }
 
       renderAllProducts();
@@ -1304,7 +1448,9 @@
       const container = document.getElementById('promo-products-list');
       const badge = document.getElementById('promo-count-badge');
 
-      currentPromoProducts.sort((a, b) => {
+      const validPromos = currentPromoProducts.filter(item => isBeforeDeadline(item.endTime));
+
+      validPromos.sort((a, b) => {
         const getRank = (item) => {
           if (item.isSuperPromo || item.name.includes('三磅') || item.price === 1500) return 1;
           if (item.name.includes('烏干達') || item.price === 600) return 2;
@@ -1314,9 +1460,18 @@
         return getRank(a) - getRank(b);
       });
 
-      if (badge) badge.innerText = `共 ${currentPromoProducts.length} 款`;
+      if (badge) badge.innerText = `共 ${validPromos.length} 款`;
 
-      container.innerHTML = currentPromoProducts.map(item => {
+      if (validPromos.length === 0) {
+        container.innerHTML = `
+          <div class="bg-white p-6 rounded-2xl border border-[#E0D1BF] text-center text-xs sm:text-sm text-[#735441]">
+            目前檔期專案已結束，歡迎前往「咖啡豆」或「掛耳包」專區選購新鮮現烘咖啡！
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = validPromos.map(item => {
         const isRedirect = item.isRedirectBean;
         const isSuper = item.isSuperPromo;
         const cleanDesc = sanitizeText(item.desc);
@@ -1330,13 +1485,14 @@
                     ${item.tag || (isSuper ? '超值特惠' : '新品上架')}
                   </span>
                   ${isSuper ? '<span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#06C755] text-white">🚚 享免運費</span>' : ''}
+                  ${item.endTime ? `<span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#FEF3C7] text-[#B45309]">⏳ 截止：${item.endTime}</span>` : ''}
                   <h4 class="font-serif font-bold text-base sm:text-lg text-[#2B170E]">${item.name}</h4>
                 </div>
                 <p class="text-xs ${isSuper ? 'text-[#9F1239]' : 'text-[#0369A1]'} font-semibold mt-1">規格內容：${item.spec}</p>
               </div>
               <div class="text-right flex-shrink-0">
                 <span class="text-base sm:text-xl font-black text-[#B74127] font-serif">NT$ ${item.price}</span>
-                <span class="text-[10px] text-gray-400 block font-normal">${isSuper ? '/ 三磅一口價' : '/ 半磅'}</span>
+                <span class="text-[10px] text-gray-400 block font-normal">${isSuper ? '/ 專案一口價' : '/ 半磅'}</span>
               </div>
             </div>
 
@@ -1611,7 +1767,7 @@
         shippingFee = 80;
       }
 
-      const isEventActive = true; 
+      const isEventActive = isGlobalEventCurrentlyActive();
       let eventDiscount = 0;
       let eventDiscountText = '';
       
@@ -1619,13 +1775,13 @@
       let currentTotalAfterItemDiscount = rawTotal - (dripDiscount + beanDiscount);
 
       if (isEventActive) {
-          if (currentTotalAfterItemDiscount >= 2000) {
-              eventDiscount = 300;
-              eventDiscountText = '滿 $2,000 折 $300';
-          } else if (currentTotalAfterItemDiscount >= 1000) {
-              eventDiscount = 100;
-              eventDiscountText = '滿 $1,000 折 $100';
-          }
+        if (currentTotalAfterItemDiscount >= globalEventConfig.threshold2) {
+          eventDiscount = globalEventConfig.discount2;
+          eventDiscountText = `滿 $${globalEventConfig.threshold2.toLocaleString()} 折 $${globalEventConfig.discount2.toLocaleString()}`;
+        } else if (currentTotalAfterItemDiscount >= globalEventConfig.threshold1) {
+          eventDiscount = globalEventConfig.discount1;
+          eventDiscountText = `滿 $${globalEventConfig.threshold1.toLocaleString()} 折 $${globalEventConfig.discount1.toLocaleString()}`;
+        }
       }
 
       const totalDiscount = dripDiscount + beanDiscount + eventDiscount;
@@ -1660,7 +1816,7 @@
       const hintEl = document.getElementById('dock-promo-hint');
       if (hintEl) {
         if (eventDiscount > 0) {
-            hintEl.innerHTML = `<span class="text-[#06C755] font-bold">🎉 全館活動：已享 ${eventDiscountText} 優惠！</span>`;
+          hintEl.innerHTML = `<span class="text-[#06C755] font-bold">🎉 全館活動：已享 ${eventDiscountText} 優惠！</span>`;
         } else if (beanPounds >= 2 && dripUnits >= 4) {
           hintEl.innerHTML = `<span class="text-[#06C755] font-bold">🎉 已享掛耳8折 ＋ 咖啡豆折$200 ＋ 免運費！</span>`;
         } else if (beanPounds >= 2) {
@@ -1672,7 +1828,7 @@
         } else if (dripUnits >= 2) {
           hintEl.innerHTML = `<span class="text-[#FFD59E]">掛耳包已享 ${dripDiscountText}！加購 1 磅咖啡豆即可享免運</span>`;
         } else {
-          hintEl.innerText = '全館滿 $1000折$100 / 滿 $2000折$300 (即日起至11/15)';
+          hintEl.innerText = '咖啡豆滿 1 磅免運、滿 2 磅現折 $200！掛耳滿 2 份享 9 折';
         }
       }
 
@@ -1690,9 +1846,78 @@
         eventDiscountText, 
         shippingFee,
         rawTotal,
+        currentTotalAfterItemDiscount,
         totalDiscount,
         grandTotal
       };
+    }
+
+    // 結帳前檢查尚未達成的優惠項目
+    function getUnmetPromoWarnings(stats) {
+      const warnings = [];
+
+      // 1. 咖啡豆門檻檢查
+      if (stats.beanPounds > 0 && stats.beanPounds < 1) {
+        const needPacks = Math.round((1 - stats.beanPounds) * 2);
+        warnings.push(`🫘 <strong>咖啡豆免運優惠</strong>：目前 ${stats.beanPounds} 磅，再加購 <strong>${needPacks} 包半磅（0.5 磅）</strong>即可省下 <strong>$80 運費</strong>！`);
+      } else if (stats.beanPounds >= 1 && stats.beanPounds < 2) {
+        const needLbs = 2 - stats.beanPounds;
+        const needPacks = Math.round(needLbs * 2);
+        warnings.push(`🫘 <strong>咖啡豆滿 2 磅現折 $200</strong>：目前已享免運，再加購 <strong>${needPacks} 包半磅（${needLbs} 磅）</strong>可直接再折 <strong>$200</strong>！`);
+      } else if (stats.beanPounds === 0 && stats.dripUnits > 0) {
+        warnings.push(`🚚 <strong>免運小撇步</strong>：目前需付 $80 運費，只要加購 <strong>1 磅咖啡豆（2 包半磅）</strong>整筆訂單立即享<strong>免運費</strong>！`);
+      }
+
+      // 2. 掛耳包門檻檢查
+      if (stats.dripUnits === 1) {
+        warnings.push(`📦 <strong>掛耳包多件折扣</strong>：目前選購 1 份，再加購 <strong>1 份（任選口味）</strong>整組掛耳包立即享 <strong>9 折優惠</strong>！`);
+      } else if (stats.dripUnits >= 2 && stats.dripUnits < 4) {
+        const needUnits = 4 - stats.dripUnits;
+        warnings.push(`📦 <strong>掛耳包滿 4 份享 8 折</strong>：目前享 9 折，再加購 <strong>${needUnits} 份</strong>即可升級為 <strong>8 折優惠</strong>！`);
+      }
+
+      // 3. 若有進行中的全館滿額活動，檢查是否差一點達標
+      if (isGlobalEventCurrentlyActive()) {
+        const curAmt = stats.currentTotalAfterItemDiscount;
+        if (curAmt > 0 && curAmt < globalEventConfig.threshold1) {
+          const diff = globalEventConfig.threshold1 - curAmt;
+          warnings.push(`🎉 <strong>${globalEventConfig.title}</strong>：再湊 <strong>NT$ ${diff.toLocaleString()}</strong> 即可滿 $${globalEventConfig.threshold1.toLocaleString()} 現折 <strong>$${globalEventConfig.discount1.toLocaleString()}</strong>！`);
+        } else if (curAmt >= globalEventConfig.threshold1 && curAmt < globalEventConfig.threshold2) {
+          const diff = globalEventConfig.threshold2 - curAmt;
+          warnings.push(`🎉 <strong>${globalEventConfig.title}</strong>：再湊 <strong>NT$ ${diff.toLocaleString()}</strong> 即可升級滿 $${globalEventConfig.threshold2.toLocaleString()} 現折 <strong>$${globalEventConfig.discount2.toLocaleString()}</strong>！`);
+        }
+      }
+
+      return warnings;
+    }
+
+    function handleCheckoutButtonClick() {
+      saveAllState();
+      const stats = recalculateTotals();
+      if ((stats.dripUnits + stats.beanPacks) === 0) {
+        showToast('⚠️ 請先挑選掛耳包或咖啡豆，或至特惠專區洽詢訂購！');
+        return;
+      }
+
+      const warnings = getUnmetPromoWarnings(stats);
+      if (warnings.length > 0) {
+        const listEl = document.getElementById('promo-warning-list');
+        if (listEl) {
+          listEl.innerHTML = warnings.map(w => `<div class="flex items-start space-x-1.5"><span>•</span><div>${w}</div></div>`).join('');
+        }
+        document.getElementById('promo-warning-modal').classList.remove('hidden');
+      } else {
+        openOrderModal();
+      }
+    }
+
+    function closePromoWarningModal() {
+      document.getElementById('promo-warning-modal').classList.add('hidden');
+    }
+
+    function proceedToOrderModal() {
+      closePromoWarningModal();
+      openOrderModal();
     }
 
     function updateBadge(id, num) {
@@ -1722,7 +1947,7 @@
       msg += `• 專區類別：${typeLabel}\n`;
       msg += `• 品項名稱：${item.name}\n`;
       msg += `• 規格內容：${item.spec}\n`;
-      msg += `• 專案金額：NT$ ${item.price} ${item.isSuperPromo ? '(三磅免運)' : ''}\n`;
+      msg += `• 專案金額：NT$ ${item.price} ${item.isSuperPromo ? '(專案免運)' : ''}\n`;
       msg += `-------------------------\n`;
       msg += `烘豆師您好，我想洽詢訂購這款專案品項，請專人協助確認備料排單與到貨服務，謝謝！`;
 
@@ -1829,12 +2054,9 @@
           });
           try {
             localStorage.setItem('speedcoffee_icedrip_photo_v8', compressedDataUrl);
-          } catch(e) {
-            console.warn('LocalStorage save error:', e);
-          }
+          } catch(e) {}
           showToast('📸 冰滴咖啡隨行瓶照片已壓縮並永久保存！');
         } catch (err) {
-          console.error(err);
           showToast('⚠️ 圖片處理發生異常，請重試！');
         }
       }
@@ -1890,14 +2112,16 @@
       msg += `📦【選購明細】\n`;
 
       if (dripLines.length > 0) {
-        msg += dripLines.join('\n') + `\n`;
+        msg += dripLines.join('\n') + `
+`;
         if (stats.dripDiscount > 0) {
           msg += `  ↳ 掛耳折扣(${stats.dripDiscountText})：-NT$ ${stats.dripDiscount}\n`;
         }
       }
 
       if (beanLines.length > 0) {
-        msg += beanLines.join('\n') + `\n`;
+        msg += beanLines.join('\n') + `
+`;
         if (stats.beanDiscount > 0) {
           msg += `  ↳ 咖啡豆滿2磅折扣：-NT$ 200\n`;
         }
@@ -1907,7 +2131,7 @@
       msg += `💵 商品小計：NT$ ${stats.rawTotal}\n`;
       
       if (stats.eventDiscount > 0) {
-          msg += `🎉 檔期活動折扣 (${stats.eventDiscountText})：-NT$ ${stats.eventDiscount}\n`;
+        msg += `🎉 檔期活動折扣 (${stats.eventDiscountText})：-NT$ ${stats.eventDiscount}\n`;
       }
       
       if (stats.totalDiscount > 0) {
@@ -2136,17 +2360,6 @@
           if (document.getElementById('cust-grind') && cust.grind) document.getElementById('cust-grind').value = cust.grind;
         }
 
-        const savedPhoto = localStorage.getItem('speedcoffee_roaster_photo_v8');
-        if (savedPhoto) {
-          const img = document.getElementById('roaster-img-display');
-          const placeholder = document.getElementById('roaster-vector-placeholder');
-          if (img && placeholder) {
-            img.src = savedPhoto;
-            img.classList.remove('hidden');
-            placeholder.classList.add('hidden');
-          }
-        }
-
         const savedIcePhoto = localStorage.getItem('speedcoffee_icedrip_photo_v8');
         if (savedIcePhoto) {
           currentIcedripProducts.forEach(item => {
@@ -2154,27 +2367,6 @@
           });
         }
       } catch (e) {}
-    }
-
-    async function handleRoasterPhotoUpload(input) {
-      if (input.files && input.files[0]) {
-        try {
-          const compressed = await compressImage(input.files[0], 800, 0.8);
-          const img = document.getElementById('roaster-img-display');
-          const placeholder = document.getElementById('roaster-vector-placeholder');
-          if (img && placeholder) {
-            img.src = compressed;
-            img.classList.remove('hidden');
-            placeholder.classList.add('hidden');
-          }
-          try {
-            localStorage.setItem('speedcoffee_roaster_photo_v8', compressed);
-          } catch(e) {}
-          showToast('📸 烘豆機照片已更新並保存！');
-        } catch(e) {
-          showToast('⚠️ 圖片處理發生異常，請重試！');
-        }
-      }
     }
 
     function openPhotoLightbox() {
@@ -2185,8 +2377,6 @@
         lbImg.src = img.src;
         if (caption) caption.innerText = 'FUJI ROYAL ROASTER R-105（日本皇家富士直火烘焙機）';
         document.getElementById('photo-lightbox').classList.remove('hidden');
-      } else {
-        document.getElementById('roaster-photo-input').click();
       }
     }
 
