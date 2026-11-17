@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://ryoblueskimo-png.github.io/speedcoffee/sitemap.xml
