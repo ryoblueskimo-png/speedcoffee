@@ -452,39 +452,7 @@
       </div>
     </section>
 
-    <!-- 訂購人與配送資訊填寫區 -->
-    <section class="mt-6 bg-white/95 p-4 rounded-2xl shadow-sm border border-[#D5C2AA]">
-      <h3 class="font-serif font-bold text-base text-[#2B170E] border-b border-[#E8D9C4] pb-2 mb-3 flex items-center justify-between">
-        <span>📝 訂購人與配送資料</span>
-        <span class="text-xs font-normal text-gray-500">（資料自動保存於本機）</span>
-      </h3>
-      
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs sm:text-sm">
-        <div>
-          <label class="block font-bold text-[#4E2F1C] mb-1">訂購人姓名 <span class="text-red-500">*</span></label>
-          <input type="text" id="cust-name" placeholder="例如：陳先生" class="w-full px-3 py-2 bg-[#FAF7F2] border border-[#D4C3AC] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#C8934A]">
-        </div>
-        <div>
-          <label class="block font-bold text-[#4E2F1C] mb-1">聯絡電話 <span class="text-red-500">*</span></label>
-          <input type="tel" id="cust-phone" placeholder="例如：0912-345678" class="w-full px-3 py-2 bg-[#FAF7F2] border border-[#D4C3AC] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#C8934A]">
-        </div>
-        <div class="sm:col-span-2">
-          <label class="block font-bold text-[#4E2F1C] mb-1">取貨方式與超商店名 / 宅配地址</label>
-          <input type="text" id="cust-address" placeholder="例如：7-11 鶯歌福昌門市 或 完整宅配地址" class="w-full px-3 py-2 bg-[#FAF7F2] border border-[#D4C3AC] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#C8934A]">
-        </div>
-        <div class="sm:col-span-2">
-          <label class="block font-bold text-[#4E2F1C] mb-1">咖啡豆研磨需求</label>
-          <select id="cust-grind" class="w-full px-3 py-2 bg-[#FAF7F2] border border-[#D4C3AC] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#C8934A]">
-            <option value="不需要研磨（保留咖啡原豆）">不需要研磨（保留咖啡原豆）</option>
-            <option value="代客研磨：手沖濾泡刻度（常用）">代客研磨：手沖濾泡 / 美式咖啡機刻度</option>
-            <option value="代客研磨：義式咖啡機刻度（細）">代客研磨：義式濃縮機刻度（細研磨）</option>
-            <option value="代客研磨：摩卡壺刻度">代客研磨：摩卡壺刻度</option>
-            <option value="代客研磨：法式濾壓壺 / 冷萃刻度（粗）">代客研磨：法式濾壓 / 冷萃刻度（粗研磨）</option>
-          </select>
-        </div>
-      </div>
-    </section>
-
+    
   </main>
 
   <!-- 置底常駐結帳工具列 -->
@@ -785,7 +753,64 @@
   <div id="toast-msg" class="fixed top-5 left-1/2 transform -translate-x-1/2 z-50 bg-[#28150D] text-[#F9F4EB] px-5 py-3 rounded-2xl shadow-2xl text-xs sm:text-sm font-medium border border-[#C8934A] transition-all duration-300 opacity-0 pointer-events-none max-w-sm text-center">
     提示訊息
   </div>
+<!-- 品牌烘焙堅持與工作室資訊 -->
+<section class="max-w-4xl mx-auto px-4 mt-12 mb-8">
+  <div class="bg-[#FDFBF7] border border-[#E5D9C5] rounded-2xl p-6 md:p-8 shadow-sm">
+    <div class="border-b border-[#E5D9C5] pb-4 mb-5">
+      <span class="text-xs font-semibold tracking-widest text-[#8C5A32] uppercase">About Speed Coffee</span>
+      <h2 class="text-xl md:text-2xl font-bold text-[#2B170E] mt-1">關於速必得自家烘焙咖啡｜鶯歌直火新鮮現烘</h2>
+    </div>
+    
+    <div class="space-y-3 text-sm md:text-base text-[#4A2E1B] leading-relaxed">
+      <p>
+        <strong>「速必得自家烘焙咖啡（Speed Coffee）」</strong>位於新北鶯歌，店內採用日本經典 <strong>FUJI ROYAL R-105 直火式烘豆機（火力加強訂製版）</strong>進行烘焙。透過對火力與風門的細膩控制，發揮不同產區生豆應有的乾淨度、甜感與醇厚度。
+      </p>
+      <p>
+        我們嚴選<strong>精品咖啡豆</strong>，並且格外重視生豆保存；無論任何等級的咖啡生豆，到貨後一律重新<strong>真空包裝</strong>，隔絕濕氣與氧化，維持生豆的最佳新鮮度，讓您在家輕鬆沖煮出一杯穩定、順口的好咖啡。
+      </p>
+    </div>
 
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6 pt-5 border-t border-[#E5D9C5] text-sm">
+      <div class="bg-white/80 p-3.5 rounded-xl border border-[#EFE6D8]">
+        <div class="font-bold text-[#2B170E] mb-1">🔥 日本富士皇家直火烘豆機</div>
+        <div class="text-xs text-[#6B4830]">使用 FUJI ROYAL R-105（火力加強訂製版）烘焙，精準掌握每支豆子的焙度與風味發展。</div>
+      </div>
+      <div class="bg-white/80 p-3.5 rounded-xl border border-[#EFE6D8]">
+        <div class="font-bold text-[#2B170E] mb-1">🌱 精品咖啡豆・全數真空保存</div>
+        <div class="text-xs text-[#6B4830]">嚴選精品等級生豆，到貨後一律重新真空分裝保存，鎖住生豆原始新鮮度。</div>
+      </div>
+      <div class="bg-white/80 p-3.5 rounded-xl border border-[#EFE6D8]">
+        <div class="font-bold text-[#2B170E] mb-1">📦 鶯歌預約自取／親送・全台寄送</div>
+        <div class="text-xs text-[#6B4830]">鶯歌在地朋友歡迎預約工作室自取或預約親送，外縣市提供超商取貨與宅配服務。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 正式品牌頁尾 Footer -->
+<footer class="max-w-4xl mx-auto px-4 pb-12 text-center md:text-left">
+  <div class="bg-[#2B170E] text-[#F5EFE6] rounded-2xl p-6 md:p-8 shadow-md">
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 border-b border-[#4A2E1B] pb-6">
+      <div>
+        <h3 class="text-lg font-bold tracking-wide text-white">速必得自家烘焙咖啡 Speed Coffee</h3>
+        <p class="text-xs text-[#D4C3B3] mt-1">新北鶯歌自家烘焙精品咖啡豆・掛耳包專賣</p>
+      </div>
+      <div class="flex flex-wrap gap-3 text-xs">
+        <a href="https://line.me/R/ti/p/@sxn5987q" target="_blank" rel="noopener noreferrer" class="px-3.5 py-2 rounded-lg bg-[#06C755] hover:bg-[#05b34c] text-white font-medium transition">
+          LINE 官方帳號 (@sxn5987q)
+        </a>
+        <a href="tel:0961411357" class="px-3.5 py-2 rounded-lg bg-[#8C5A32] hover:bg-[#A36B3E] text-white font-medium transition">
+          聯絡電話：0961-411-357
+        </a>
+      </div>
+    </div>
+    
+    <div class="mt-4 flex flex-col md:flex-row justify-between items-center text-xs text-[#B8A594] gap-2">
+      <div>工作室地點：新北市鶯歌區福昌街7巷5號（採預約制自取或鶯歌區由我們親送，下單後將透過 LINE 或電話確認時間）</div>
+      <div>&copy; 2026 速必得自家烘焙咖啡 Speed Coffee. All Rights Reserved.</div>
+    </div>
+  </div>
+</footer>
   <script>
     const DEFAULT_SHEET_ID = '1-IhxHvLO_PcEVPei-1zF1w6WUDhFNsYAFF-agvidZbc';
     
@@ -2689,14 +2714,7 @@
       renderAllProducts();
       loadDataFromCloudSheet(false);
 
-      ['cust-name', 'cust-phone', 'cust-address', 'cust-grind'].forEach(id => {
-        const el = document.getElementById(id);
-        if (el) {
-          el.addEventListener('input', saveAllState);
-          el.addEventListener('change', saveAllState);
-        }
-      });
-    });
+    
   </script>
 </body>
 </html>
